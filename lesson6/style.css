@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+  *,
+  *:before,
+  *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  :focus,
+  :active {
+    outline: none;
+  }
+  a:focus,
+  a:active {
+    outline: none;
+  }
+  
+  nav,
+  footer,
+  header,
+  aside {
+    display: block;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  input,
+  button,
+  textarea {
+    font-family: inherit;
+  }
+  
+  input::-ms-clear {
+    display: none;
+  }
+  button {
+  border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  ul li {
+    list-style: none;
+  }
+  img {
+    vertical-align: top;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: 400;
+  }
+  
+  [class*="__container"] {
+    max-width: 1310px;
+    margin: 0 auto;
+    padding: 0px 15px;
+  }
+  
+  .wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  
+  .question{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+      margin-bottom: 64px;
+  }
+  
+  .question__title{
+      font-size: 36px;
+  }
+  
+  .question__text{
+      font-size: 24px;
+  }
+  
+  table, th, td {
+      border: 1px solid;
+      text-align: start;
+      font-size: 24px;
+    }
+  
+  td{
+      font-size: 18px;
+  }
+  
+  
+  
+  .lesson__container{
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+  }
+
+.products__items{
+  display: flex;
+  flex-direction: column;
+  gap: 48px ;
+  font-size: 18px;
+  background-color: rgb(226, 226, 22);
+  border-radius: 5px;
+  padding: 48px 24px;
+  border: 5px solid rgb(10, 9, 9);
+}
+
+.products__items:hover{
+  box-shadow: 3px 3px rgb(37, 32, 32), -1em 0 .4em olive;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  transform: scale(1.05);
+}
+
+.product__item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 120px ;
+}
+
+h2{
+  text-align: center;
+  margin-bottom: 36px;
+  font-size: 36px;
+}

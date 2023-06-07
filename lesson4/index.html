@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lesson4/style.css">
+    <title>Задача 4</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lesson__container">
+            <div class="question">
+                <h1 class="question__title">Задача 4</h1>
+                <p class="question__text"> Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.
+                </p>
+            </div>
+            <script>
+                let smLength = parseInt(prompt('Введіть довжину у сантиметрах', '0'));
+
+                let metrLength = smLength / 100;
+
+                let kmLength = smLength / 100000;
+
+                document.write(`<table>
+                <tr>
+                    <th>Шуканий Результат</th>
+                    <th>Отримане значення</th>
+                </tr>
+                <tr>
+                    <th>Метри з сантиметрів</th>
+                    <td> ${metrLength} </td>
+                </tr>
+                <tr>
+                    <th>Кілометри з сантиметрів</th>
+                    <td> ${kmLength} </td>
+                </tr>
+            </table>`)
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

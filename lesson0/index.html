@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lesson0/style.css">
+    <title>Задача 0</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lesson__container">
+            <div class="question">
+                <h1 class="question__title">Задача 0</h1>
+                <p class="question__text"> Обчислити значення виразів
+                    <br> S1=a+12+b <br>
+                    S2=sqrt(a+b/2a) <br>
+                    S3=cbrt((a+b)c) <br>
+                    S4=sin⁡(a/-b)
+                </p>
+            </div>
+            <script>
+                let a = parseInt(prompt('Введіть a', '0'));
+                let b = parseInt(prompt('Введіть b', '0'));
+                let c = parseInt(prompt('Введіть c', '0'));
+
+                // Знаходимо S1
+                let S1 = a + 12 + b
+
+                // Знаходимо S2
+                let S2 = Math.sqrt((a + b) / (2 * a))
+
+                // Знаходимо S3
+                let S3 = Math.cbrt((a + b) / c)
+
+                // Знаходимо S4
+                let S4 = Math.sin(a / -b)
+
+                document.write(`<table>
+                <tr>
+                    <th>Шуканий Результат</th>
+                    <th>Отримане значення</th>
+                </tr>
+                <tr>
+                    <th>S1</th>
+                    <td> = ${S1}</td>
+                </tr>
+                <tr>
+                    <th>S2</th>
+                    <td><br> = ${S2} </td>
+                </tr>
+                <tr>
+                    <th>S3</th>
+                    <td><br> = ${S3}</td>
+                </tr>
+                <tr>
+                    <th>S4</th>
+                    <td><br> = ${S4}</td>
+                </tr>
+            </table>`)
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

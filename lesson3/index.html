@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lesson3/style.css">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lesson__container">
+            <div class="question">
+                <h1 class="question__title">Задача 3</h1>
+                <p class="question__text"> Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5%
+                    від загальної вартості).
+                </p>
+            </div>
+            <script>
+                let productPrice = parseInt(prompt('Введіть вартість товару', '0'));
+                let productNumber = parseInt(prompt('Введіть кількість товарів', '0'));
+
+                let fullPrice = productPrice * productNumber;
+
+                let taxPrice = (fullPrice * 5) / 100
+
+                document.write(`<table>
+                <tr>
+                    <th>Шуканий Результат</th>
+                    <th>Отримане значення</th>
+                </tr>
+                <tr>
+                    <th>Загальна вартість товарів</th>
+                    <td> ${fullPrice} </td>
+                </tr>
+                <tr>
+                    <th>ПДВ від загальної вартості</th>
+                    <td> ${taxPrice} </td>
+                </tr>
+            </table>`)
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

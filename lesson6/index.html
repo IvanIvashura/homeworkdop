@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lesson6/style.css">
+    <title>Задача 6</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lesson__container">
+            <div class="question">
+                <h1 class="question__title">Задача 6</h1>
+                <p class="question__text"> З клавіатури вводяться вартість товару та кількість одиниць 3 товарів.
+                    Обчислити вартість кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті)
+                    використовуючи елементи розмітки.
+                </p>
+            </div>
+            <script>
+                let priceFirstProduct = parseInt(prompt('Введіть вартість товару за одиницю', '0'));
+
+                let firstProduct = parseInt(prompt('Введіть кількість товарів', '0'));
+
+                let priceSecondProduct = parseInt(prompt('Введіть вартість товару за одиницю', '0'));
+
+                let secondProduct = parseInt(prompt('Введіть кількість товарів', '0'));
+
+                let priceThirdProduct = parseInt(prompt('Введіть вартість товару за одиницю', '0'));
+
+                let thirdProduct = parseInt(prompt('Введіть кількість товарів', '0'));
+
+
+                let firstProducts = priceFirstProduct * firstProduct;
+                let secondProducts = priceSecondProduct * secondProduct;
+                let thirdProducts = priceThirdProduct * thirdProduct;
+                let totalPrice = firstProducts + secondProducts + thirdProducts;
+
+
+                document.write(`
+            <div class="products__items">
+                <h2>Receipt</h2>
+                <div class="product__item">
+                    <div class="item__name">First Product</div>
+                    <div class="item__price">${firstProducts}</div>
+                </div>
+                <div class="product__item">
+                    <div class="item__name">Second Product</div>
+                    <div class="item__price">${secondProducts}</div>
+                </div>
+                <div class="product__item">
+                    <div class="item__name">Third Product</div>
+                    <div class="item__price">${thirdProducts}</div>
+                </div>
+                <div class="product__item">
+                    <div class="item__name">Total Price</div>
+                    <div class="item__price">${totalPrice}</div>
+                </div>
+            </div>
+                `)
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

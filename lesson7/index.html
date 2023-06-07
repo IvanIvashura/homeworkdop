@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lesson7/style.css">
+    <title>Задача 7</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lesson__container">
+            <div class="question">
+                <h1 class="question__title">Задача 7</h1>
+                <p class="question__text"> Знайти суму випадкового номера місяця (від 1 до 12) та випадкового номера дня
+                    (від 0 до 6).
+                </p>
+            </div>
+            <script>
+                let minMonth = 1;
+                let maxMonth = 12;
+                let randomMonth = minMonth + Math.floor(Math.random() * (maxMonth - minMonth + 1));
+
+                let minDay = 0;
+                let maxDay = 6;
+
+                let randomDay = minDay + Math.floor(Math.random() * (maxDay - minDay + 1));
+
+                let totalRandom = randomDay + randomMonth;
+
+                document.write(`<table>
+                <tr>
+                    <th>Шуканий Результат</th>
+                    <th>Отримане значення</th>
+                </tr>
+                <tr>
+                    <th>Рандовний місяць</th>
+                    <td> ${randomMonth} </td>
+                </tr>
+                <tr>
+                    <th>Рандомний день</th>
+                    <td> ${randomDay} </td>
+                </tr>
+                <tr>
+                    <th>Сума рандомного місіця та дня</th>
+                    <td> ${totalRandom} </td>
+                </tr>
+            </table>`)
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
