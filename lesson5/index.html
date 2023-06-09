@@ -5,43 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
     <title>Задача 5</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="lesson__container">
-            <div class="question">
-                <h1 class="question__title">Задача 5</h1>
-                <p class="question__text"> Дано кількість секунд, що пройшла від початку доби. Визначити скільки це
-                    годин і хвилин.
-                </p>
-            </div>
-            <script>
-                let secDay = parseInt(prompt('Введіть кількість секунд від початку доби', '0'));
+    <script>
+        // З клавіатури вводиться назва категорії водія 
+        // А-мотоцикл
+        // В-легковий автомобіль
+        // С-вантажний автомобіль
+        // Вивести на екран назву транспортного засобу, яким він може керувати.
 
-                let minDay = (secDay / 100).toFixed(2);
+        let classDriver = prompt('Яка у Вас категорія водійського посвідчення?(english words(A,B,C)')
 
-                let hoursDay = (minDay / 60).toFixed(2);
+        let res
+        switch (classDriver) {
+            case 'A':
+                res = 'Мотоцикл'
+                break
+            case 'B':
+                res = 'легковий автомобіль'
+                break
+            case 'C':
+                res = 'вантажний автомобіль'
+                break
+            default:
+                res = 'Невідома категорія'
+                break
+        }
+        alert(res)
 
-                document.write(`<table>
-                <tr>
-                    <th>Шуканий Результат</th>
-                    <th>Отримане значення</th>
-                </tr>
-                <tr>
-                    <th>Хвилини з секунд</th>
-                    <td> ${minDay} </td>
-                </tr>
-                <tr>
-                    <th>Години з секунд</th>
-                    <td> ${hoursDay} </td>
-                </tr>
-            </table>`)
-            </script>
-        </div>
-    </div>
+    </script>
 </body>
 
 </html>

@@ -5,52 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
     <title>Задача 1</title>
 </head>
+<script>
+    // З клавіатури вводяться імена двох дітей та кількість у них цукерок. Вивести не екран ім’я тієї дитини, у якої кількість цукерок є більшою, або вивести, що кількість однакова.
+
+    let firstName = prompt('Імя дитини');
+    let firstSweets = parseInt(prompt(`Кількість цукерок у ${firstName}`));
+
+    let secondName = prompt('Імя дитини');
+    let secondSweets = parseInt(prompt(`Кількість цукерок у ${secondName}`));
+
+
+    if (firstSweets > secondSweets) {
+        alert(`У ${firstName} цукерок більше`)
+    } else if (firstSweets < secondSweets) {
+        alert(`У ${secondName} цукерок більше`)
+    } else {
+        alert(`У ${firstName} та ${secondName} рівна кількість цукерок`)
+    }
+
+
+
+</script>
 
 <body>
-    <div class="wrapper">
-        <div class="lesson__container">
-            <div class="question">
-                <h1 class="question__title">Задача 1</h1>
-                <p class="question__text">Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі
-                    таблиці</p>
-            </div>
-            <script>
-                let num1 = parseInt(prompt('Введіть перше число', '0'));
-                let num2 = parseInt(prompt('Введіть друге число', '0'));
-
-                let sum = num1 + num2;
-                let chast = num1 / num2;
-                let dob = num1 * num2;
-
-                document.write(`
-                <table>
-                <tr>
-                    <th>Шуканий Результат</th>
-                    <th>Отримане значення</th>
-                </tr>
-                <tr>
-                    <th>Сума</th>
-                    <td>сума = ${sum}</td>
-                </tr>
-                <tr>
-                    <th>Частка</th>
-                    <td><br> частка = ${chast} </td>
-                </tr>
-                <tr>
-                    <th>Добуток</th>
-                    <td><br>добуток = ${dob}</td>
-                </tr>
-            </table>
-        
-                
-                `)
-
-            </script>
-        </div>
-    </div>
 
 </body>
 

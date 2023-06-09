@@ -5,44 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
     <title>Задача 3</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="lesson__container">
-            <div class="question">
-                <h1 class="question__title">Задача 3</h1>
-                <p class="question__text"> Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5%
-                    від загальної вартості).
-                </p>
-            </div>
-            <script>
-                let productPrice = parseInt(prompt('Введіть вартість товару', '0'));
-                let productNumber = parseInt(prompt('Введіть кількість товарів', '0'));
+    <script>
+        // Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+        let maxNumber = 5;
+        let minNumber = 1;
+        let randomNumber = minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
 
-                let fullPrice = productPrice * productNumber;
+        let guessNumber1 = parseInt(prompt('Спроба 1! Вгадайте чисор від 1 до 5'));
 
-                let taxPrice = (fullPrice * 5) / 100
+        if (guessNumber1 === randomNumber) {
+            alert('Ви вгадали!');
+        } else {
+            alert('Ви не вгадали, спробуйте ще раз');
+            let guessNumber2 = parseInt(prompt('Спроба 2! Вгадайте число від 1 до 5'));
+            if (guessNumber2 === randomNumber) {
+                alert('Ви вгадали!');
+            } else {
+                alert(`Нажаль, ви не виграли. Загадане число було: ${randomNumber}`);
+            }
+        }
 
-                document.write(`<table>
-                <tr>
-                    <th>Шуканий Результат</th>
-                    <th>Отримане значення</th>
-                </tr>
-                <tr>
-                    <th>Загальна вартість товарів</th>
-                    <td> ${fullPrice} </td>
-                </tr>
-                <tr>
-                    <th>ПДВ від загальної вартості</th>
-                    <td> ${taxPrice} </td>
-                </tr>
-            </table>`)
-            </script>
-        </div>
-    </div>
+    </script>
 </body>
 
 </html>

@@ -170,38 +170,3 @@ a:hover{
     color: rgb(231, 226, 226);
     transition-duration: 0.3s;
 }
-
-.products__items{
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px ;
-  font-size: 18px;
-  background-color: rgb(226, 226, 22);
-  border-radius: 5px;
-  padding: 48px 24px;
-  border: 5px solid rgb(10, 9, 9);
-}
-
-.products__items:hover{
-  box-shadow: 3px 3px rgb(37, 32, 32), -1em 0 .4em olive;
-  cursor: pointer;
-  transition-duration: 0.5s;
-  transform: scale(1.05);
-}
-
-.product__item{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 120px ;
-}
-
-h2{
-  text-align: center;
-  margin-bottom: 36px;
-  font-size: 36px;
-}
-p{
-  line-height: 32px;
-}
