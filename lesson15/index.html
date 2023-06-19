@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 15</title>
+</head>
+
+<body>
+    <script>
+        // Задача 15. 
+        // Користувача поступово вводить показники температури протягом року.
+        // Знайти середню температуру.
+
+        let mothTemp;
+        let totalSum = 0;
+
+        for (let i = 1; i <= 12; i++) {
+            mothTemp = parseFloat(prompt(`Введіть середню термпературу за ${i} місяць`))
+            totalSum += mothTemp;
+        }
+        let middleTempYear = totalSum / 12;
+        alert(`Середня температура протягом року ${middleTempYear.toFixed(1)}`)
+
+    </script>
+</body>
+
+</html>

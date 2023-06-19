@@ -8,24 +8,18 @@
     <title>Задача 1</title>
 </head>
 <script>
-    // З клавіатури вводяться імена двох дітей та кількість у них цукерок. Вивести не екран ім’я тієї дитини, у якої кількість цукерок є більшою, або вивести, що кількість однакова.
+    // Задача 1. Вивести з використанням циклів маркований список з випадковими числами(1 - 100).
+    // Кількість випадкових чисел вводиться користувачем.
 
-    let firstName = prompt('Імя дитини');
-    let firstSweets = parseInt(prompt(`Кількість цукерок у ${firstName}`));
+    const minNumber = 1;
+    const maxNumber = 100;
 
-    let secondName = prompt('Імя дитини');
-    let secondSweets = parseInt(prompt(`Кількість цукерок у ${secondName}`));
+    const userNumbers = parseInt(prompt('Введіть кількість чисел'))
 
-
-    if (firstSweets > secondSweets) {
-        alert(`У ${firstName} цукерок більше`)
-    } else if (firstSweets < secondSweets) {
-        alert(`У ${secondName} цукерок більше`)
-    } else {
-        alert(`У ${firstName} та ${secondName} рівна кількість цукерок`)
+    for (let i = 0; i < userNumbers; i++) {
+        let randomNumber = minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
+        document.write(`<ul><li>${randomNumber}</li></ul>`)
     }
-
-
 
 </script>
 

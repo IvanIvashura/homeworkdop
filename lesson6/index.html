@@ -6,42 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 6</title>
+    <link rel="stylesheet" href="../style.css">
+
 </head>
 
 <body>
     <script>
-        // З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.
+        // Задача 6. Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
 
-        let numberDay = prompt('Введіть номер дня тижня')
+        let num = 0;
+        document.write(`<div class="table">`)
+        for (let t = 1; t <= 3; t++) {
+            document.write(`<table>`)
+            for (let i = 0; i < 3; i++) {
+                document.write(`<tr>`)
+                for (let j = 1; j <= 3; j++) {
+                    num++
+                    document.write(`<td>${num}</td>`)
+                }
+                document.write(`</tr>`)
 
-        let res
-        switch (numberDay) {
-            case '1':
-                res = 'Понеділок'
-                break
-            case '2':
-                res = 'Вівторок'
-                break
-            case '3':
-                res = 'Середа'
-                break
-            case '4':
-                res = 'Четвер'
-                break
-            case '5':
-                res = 'Пятниця'
-                break
-            case '6':
-                res = 'Субота'
-                break
-            case '7':
-                res = 'Неділя'
-                break
-            default:
-                res = 'Неправильне значення'
-                break
+            }
+            document.write(`</table>`)
         }
-        alert(res)
+        document.write(`</div>`)
+
+
+
     </script>
 </body>
 

@@ -6,34 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 5</title>
+    <link rel="stylesheet" href="../style.css">
+
 </head>
 
 <body>
     <script>
-        // З клавіатури вводиться назва категорії водія 
-        // А-мотоцикл
-        // В-легковий автомобіль
-        // С-вантажний автомобіль
-        // Вивести на екран назву транспортного засобу, яким він може керувати.
+        let num = 0;
+        document.write(`<table>`)
+        for (let i = 0; i < 3; i++) {
+            document.write(`<tr>`)
+            for (let j = 1; j <= 3; j++) {
+                num++
+                document.write(`<td>${num}</td>`)
+            }
+            document.write(`</tr>`)
 
-        let classDriver = prompt('Яка у Вас категорія водійського посвідчення?(english words(A,B,C)')
-
-        let res
-        switch (classDriver) {
-            case 'A':
-                res = 'Мотоцикл'
-                break
-            case 'B':
-                res = 'легковий автомобіль'
-                break
-            case 'C':
-                res = 'вантажний автомобіль'
-                break
-            default:
-                res = 'Невідома категорія'
-                break
         }
-        alert(res)
+        document.write(`</table>`)
+
 
     </script>
 </body>

@@ -6,35 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 4</title>
+    <link rel="stylesheet" href="../style.css">
+
 </head>
 
 <body>
     <script>
-        // З клавіатури вводиться вік людини. 
-        // Вивести на екран ким він є (дитиною у садочку, школярем, студентом, працівником, пенсіонером).
-        // садочок 1-5
-        // школа 6-17
-        // студент 18-21
-        // працівник 22-59 
-        // пенсіонер 60+
+        // Задача 4. Вивести таблицю з 3 рядків і 7 стовпців
+        document.write(`<table>`)
+        for (let i = 1; i <= 3; i++) {
+            document.write(`<tr>`)
+            for (let j = 1; j <= 7; j++) {
+                document.write(`<td>${j}</td>`)
+            }
+            document.write(`</tr>`)
 
-        let yourAge = parseInt(prompt('Скільки Вам років?'));
+        }
+        document.write(`</table>`)
 
-        if (yourAge >= 1 && yourAge <= 5) {
-            alert('Ви в садочку')
-        } else if (yourAge >= 6 && yourAge <= 17) {
-            alert('Ви школяр')
-        } else if (yourAge >= 18 && yourAge <= 21) {
-            alert('Ви студент')
-        } else if (yourAge >= 22 && yourAge <= 59) {
-            alert('Ви працівник')
-        }
-        else if (yourAge >= 60) {
-            alert('Ви пенсіонер')
-        }
-        else {
-            alert('Неправильне значення')
-        }
 
     </script>
 </body>

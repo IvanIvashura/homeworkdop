@@ -6,32 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 2</title>
+
 </head>
+<script>
+    // Задача 2. Створити 10 елементів для введення цін продуктів
+
+    for (let i = 1; i <= 10; i++) {
+        document.write(`<form action="#">Product ${i}<input type=""></form>`)
+    }
+
+</script>
 
 <body>
-    <script>
-        // З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
-
-        let priceProduct = parseFloat(prompt('Введіть ціну товару'));
-        let allMoney = parseFloat(prompt('Введіть вашу кількість грошей'));
-
-        const ticketPrice = 4;
-
-        if (allMoney >= priceProduct) {
-            alert('Покупка вдала!');
-
-            if (allMoney >= priceProduct + ticketPrice) {
-                if (confirm("Чи не бажаєте прийняти участь в лотереї за 4грн?")) {
-                    alert('Нехай щастить!');
-                } else {
-                    alert('Шкода');
-                }
-            }
-        } else {
-            alert('У покупці відмовлено');
-        }
-
-    </script>
 </body>
 
 </html>

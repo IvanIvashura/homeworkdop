@@ -10,39 +10,23 @@
 
 <body>
     <script>
-        //  З клавіатури вводиться номер місяця.Вивести до якої пори він відноситься
+        // Задача 7. Вивести на екран N абзаців (N вводиться користувачем) за зразком:
 
-        let monthNumber = parseInt(prompt('Введіть номер місяця(1-12)'));
+        let N = parseInt(prompt('Введіть кількість абзаців'));
 
-        let res
-        switch (monthNumber) {
-            case 1:
-            case 2:
-            case 12:
-                res = 'Зима'
-                break
-            case 3:
-            case 4:
-            case 5:
-                res = 'Веса'
-                break
-            case 6:
-            case 7:
-            case 8:
-                res = 'Літо'
-                break
-            case 9:
-            case 10:
-            case 11:
-                res = 'Осінь'
-                break
-            default:
-                res = 'Неправильний номер місяця'
-                break
-        }
-        alert(res)
-
+        let pNumber = 0;
+        let pCount;
+        for (let i = 1; i <= N; i++) {
+            pCount = i;
+            document.write(`<h1>Заголовок ${i}</h1><br>`)
+            for (let j = 1; j <= pCount; j++) {
+                pNumber++
+                document.write(`<p>Розділ ${i}, параграф ${pNumber} </p>`)
+            } document.write(`<br>`)
+            pNumber = 0;
+        } 
     </script>
+
 </body>
 
 </html>

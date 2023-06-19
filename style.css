@@ -170,3 +170,22 @@ a:hover{
     color: rgb(231, 226, 226);
     transition-duration: 0.3s;
 }
+
+.btnHello{
+  padding: 20px 30px;
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.table{
+  display: flex;
+  align-items: center;
+  gap: 5px  ;
+}

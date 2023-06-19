@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 13</title>
+</head>
+
+<body>
+    <script>
+        //  13. Морський бій.
+        // Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M.
+        // Маючи К снарядів користувач намагається потопити корабель. 
+
+        let height = parseInt(prompt(`Введіть висоту поля по Х`));
+        let width = parseInt(prompt(`Введіть ширину поля по Y`));
+
+        let numberWeapons = parseInt(prompt('Введіть кількість снарядів'))
+
+        let randomX = Math.floor(Math.random() * (height + 1));
+        let randomY = Math.floor(Math.random() * (width + 1));
+
+
+        // alert(`${randomX}`)
+        // alert(`${randomY}`)
+
+        do {
+            let shootX = parseInt(prompt('Введіть номер клітинки для пострілу по Х'))
+            let shootY = parseInt(prompt('Введіть номер клітинки для пострілу по Y'))
+            --numberWeapons
+            if (shootX == randomX && shootY == randomY) {
+                alert(`Ви влучили`)
+                break
+            } else if (numberWeapons > 0) {
+                alert(`Ви не влучили спробуйте ще ${numberWeapons} раз`)
+            } else {
+                alert('Снаряди закінчились')
+            }
+        } while (numberWeapons !== 0);
+
+
+    </script>
+</body>
+
+</html>
