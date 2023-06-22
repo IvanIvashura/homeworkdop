@@ -10,14 +10,26 @@
 
 <body>
     <script>
-        // 1. З клавіатури вводитяться числа поки не буде введено 0. Знайти суму чисел.
+        // 12. З клавіатури вводяться поступово числа.
+        // Знайти два найбільші числа.
+        // Ввід здійснюється до тих пір, поки різниця між такими числами є більшою за 5.
+
         let userNum;
-        let sum = 0;
+        const userDifferent = 5;
+        let firstlargestNum = -Infinity;
+        let secondLargestNum = -Infinity;
+
         do {
-            userNum = parseInt(prompt('Введіть число'))
-            sum += userNum;
-        } while (userNum !== 0);
-        alert(`${sum}`)
+            userNum = parseInt(prompt('Введіть числа'))
+            if (firstlargestNum < userNum) {
+                firstlargestNum = userNum
+            } else if (firstlargestNum > userNum && secondLargestNum < userNum) {
+                firstlargestNum = userNum
+            }
+        } while (firstlargestNum - secondLargestNum <= 5);
+        alert(`Найбільше 1 ${firstlargestNum}`)
+        alert(`Найбільше 2 ${secondLargestNum}`)
+
     </script>
 </body>
 

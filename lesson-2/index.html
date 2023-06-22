@@ -8,38 +8,32 @@
     <title>Задача -2</title>
 </head>
 <script>
-    //   5. На екрані виводиться меню:
-    //  1. Сказати «Привіт».
-    //  2. Сказати «Зачекай».
-    // 3. Сказати «До побачення».
-    // 4. Вихід.
-    // Шляхом вибору пунктів меню виводити відповідні повідомлення, поки не буде вибрано пункт номер 4.
+    // 7. Користувач загадує натуральне число від 1 до N.
+    // Шляхом задавання мінімальної кількості запитань знайти вказане число
+    // (застосувати бінарний пошук, на кожному кроці якого інтервал пошуку зменшується на 2
+    // шляхом порівняння з елементом, який знаходиться у центрі поточного інтервалу).
 
-    let userChoice;
+    let minNum = 1;
+    let userNum = parseInt(prompt('Введіть число'))
+    let questionNum;
+    let centerNum;
 
     do {
-        userChoice = parseInt(prompt('1. Сказати «Привіт». 2. Сказати «Зачекай». 3. Сказати «До побачення». 4. Вихід.'))
+        centerNum = Math.floor((minNum + userNum) / 2)
+        let randomNum = minNum + Math.floor(Math.random() * (userNum - centerNum + 1));
+        questionNum = confirm(`Ваше число ${randomNum}?`)
 
-        switch (userChoice) {
-            case 1:
-                alert(`Привіт`);
-                break;
-            case 2:
-                alert(`«Зачекай»`);
-                break;
-            case 3:
-                alert(`До побачення`);
-                break;
-            case 4:
-                alert(`Вихід`);
-                break;
-            default:
-                alert(`Невірно`);
-                break;
+        if (randomNum == userNum) {
+            alert(`Вітаю више число було вгадане`)
+        } else if (userNum > randomNum) {
+            minNum = randomNum + 1;
+        } else {
+            userNum = randomNum - 1;
         }
-    } while (userChoice !== 4);
 
 
+
+    } while (questionNum !== true);
 
 </script>
 

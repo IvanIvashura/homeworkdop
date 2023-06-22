@@ -9,32 +9,23 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <script>
-    // 7. Користувач загадує натуральне число від 1 до N.
-    // Шляхом задавання мінімальної кількості запитань знайти вказане число
-    // (застосувати бінарний пошук, на кожному кроці якого інтервал пошуку зменшується на 2
-    // шляхом порівняння з елементом, який знаходиться у центрі поточного інтервалу).
+    // 16. У бригаді, що працює на сінокосі, є N сінокосарок.
+    // Перша сінокосарка працювала m годин,
+    // а кожна наступна на 10 хв більше, ніж попередня.
+    // Скільки годин працювала вся бригада ?
 
-    let minNum = 1;
-    let userNum = parseInt(prompt('Введіть число'))
-    let questionNum;
-    let centerNum;
+    let numberWorkers = parseInt(prompt('Введіть кількість робочих'));
+    let firstWorker = parseInt(prompt('Введіть кількість годин яку працював перший робітник'));
 
-    do {
-        centerNum = Math.floor((minNum + userNum) / 2)
-        let randomNum = minNum + Math.floor(Math.random() * (userNum - centerNum + 1));
-        questionNum = confirm(`Ваше число ${randomNum}?`)
+    let totalMinutes = 0;
+    let currentMinutes = firstWorker * 60;
 
-        if (randomNum == userNum) {
-            alert(`Вітаю више число було вгадане`)
-        } else if (userNum > randomNum) {
-            minNum = randomNum + 1;
-        } else {
-            userNum = randomNum - 1;
-        }
-
-
-
-    } while (questionNum !== true);
+    for (let i = 0; i < numberWorkers; i++) {
+        currentMinutes += 10;
+        totalMinutes += currentMinutes
+    }
+    let allTime = (totalMinutes / 60)
+    alert(`${allTime.toFixed(1)}`)
 </script>
 
 <body>
