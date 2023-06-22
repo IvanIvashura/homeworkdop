@@ -9,12 +9,32 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <script>
-    // Задача 0. Вивести на екран 8 кнопок з написом “Hello”.
+    // 7. Користувач загадує натуральне число від 1 до N.
+    // Шляхом задавання мінімальної кількості запитань знайти вказане число
+    // (застосувати бінарний пошук, на кожному кроці якого інтервал пошуку зменшується на 2
+    // шляхом порівняння з елементом, який знаходиться у центрі поточного інтервалу).
 
-    for (let btnHello = 0; btnHello < 8; btnHello++) {
-        document.write(`<button class="btnHello">Hello</button>`)
+    let minNum = 1;
+    let userNum = parseInt(prompt('Введіть число'))
+    let questionNum;
+    let centerNum;
 
-    }
+    do {
+        centerNum = Math.floor((minNum + userNum) / 2)
+        let randomNum = minNum + Math.floor(Math.random() * (userNum - centerNum + 1));
+        questionNum = confirm(`Ваше число ${randomNum}?`)
+
+        if (randomNum == userNum) {
+            alert(`Вітаю више число було вгадане`)
+        } else if (userNum > randomNum) {
+            minNum = randomNum + 1;
+        } else {
+            userNum = randomNum - 1;
+        }
+
+
+
+    } while (questionNum !== true);
 </script>
 
 <body>

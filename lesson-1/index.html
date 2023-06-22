@@ -10,11 +10,14 @@
 
 <body>
     <script>
-        // Задача - 1. Вивести на екран номери місяців весни і літа(від 3 до 8)
-
-        for (let monthNumber = 3; monthNumber <= 8; monthNumber++) {
-            document.write(`${monthNumber}<br>`)
-        }
+        // 1. З клавіатури вводитяться числа поки не буде введено 0. Знайти суму чисел.
+        let userNum;
+        let sum = 0;
+        do {
+            userNum = parseInt(prompt('Введіть число'))
+            sum += userNum;
+        } while (userNum !== 0);
+        alert(`${sum}`)
     </script>
 </body>
 

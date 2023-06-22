@@ -2,19 +2,53 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задача 2</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 2</title>
 
 </head>
 <script>
-    // Задача 2. Створити 10 елементів для введення цін продуктів
+  //  16. Танчики.На полі з 10 клітинок розміщують танк.
+  // За один крок танк може переміщуватися на відстань від 0 до 1 у  будь - якому напрямку
+  // (в межах поля).При влучанні броня танка пошкоджується на 30 балів(всього 100).
+  // Гра продовжується поки або не закінчаться снаряди(кількість вводиться з клавіатури)
+  // або не буде влучання.
 
-    for (let i = 1; i <= 10; i++) {
-        document.write(`<form action="#">Product ${i}<input type=""></form>`)
+  let minNum = 1;
+  let maxNum = 10;
+
+  let tankPlace = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+
+  let weaponsNum = parseInt(prompt('Введіть кількість патронів'))
+
+  let userShoot;
+
+  let tankHealth = 100;
+
+  do {
+    alert(`${tankPlace}`)
+    userShoot = parseInt(prompt('Введіть клітинку для пострілу від 1 до 10'))
+
+    if (userShoot == tankPlace) {
+      alert('Ви влучили')
+      tankHealth -= 30;
+      tankPlace += Math.floor(Math.random() * 2); // ?
+    } else if (tankPlace > userShoot) {
+      alert('Ви не влучили, танк змінив місце')
+      tankPlace += Math.floor(Math.random() * 2); // ?
+    } else {
+      alert('Ви не влучили, танк змінив місце')
+      tankPlace -= Math.floor(Math.random() * 2); // ??
     }
-
+    weaponsNum--;
+  } while (weaponsNum > 0 && tankHealth > 0);
+  if (weaponsNum <= 0) {
+    alert('У вас закінчились патрони')
+  }
+  if (tankHealth > 0) {
+    alert('Так знищено')
+  }
 </script>
 
 <body>

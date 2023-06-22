@@ -8,19 +8,40 @@
     <title>Задача 1</title>
 </head>
 <script>
-    // Задача 1. Вивести з використанням циклів маркований список з випадковими числами(1 - 100).
-    // Кількість випадкових чисел вводиться користувачем.
+    // 15. Тир.На полі з 10 клітинок розміщують зайця.
+    // За один крок заєць може стрибати на відстань від 0 до 3 позицій у будь - якому напрямку.
+    // З клавіатури вводиться позиція пострілу.
+    // Гра продовжується поки  у користувача не закінчаться патрони
+    // кількість вводиться з клавіатури або не буде влучання
 
-    const minNumber = 1;
-    const maxNumber = 100;
+    let minNum = 1;
+    let maxNum = 10;
 
-    const userNumbers = parseInt(prompt('Введіть кількість чисел'))
+    let rabbitPlace = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
 
-    for (let i = 0; i < userNumbers; i++) {
-        let randomNumber = minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1));
-        document.write(`<ul><li>${randomNumber}</li></ul>`)
+    let weaponsNum = parseInt(prompt('Введіть кількість патронів'))
+
+    let userShoot;
+
+    do {
+        userShoot = parseInt(prompt('Введіть клітинку для пострілу від 1 до 10'))
+
+        if (userShoot == rabbitPlace) {
+            alert('Ви влучили')
+            break;
+        } else if (rabbitPlace > userShoot) {
+            alert('Ви не влучили, та налякали зайця')
+            rabbitPlace += Math.floor(Math.random() * 4); // ?
+        } else {
+            alert('Ви не влучили, та налякали зайця')
+            rabbitPlace -= Math.floor(Math.random() * 4); // ??
+        }
+        weaponsNum--;
+    } while (weaponsNum > 0 && userShoot !== rabbitPlace);
+    if (weaponsNum <= 0) {
+        alert('У вас закінчились патрони')
+
     }
-
 </script>
 
 <body>
