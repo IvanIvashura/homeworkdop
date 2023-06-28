@@ -23,9 +23,9 @@
     let userTemp;
     for (let i = 1; i <= numOfTemp; i++) {
       userTemp = parseInt(prompt(`Введіть ${i} показ`))
-    }
-    if (userTemp < 0) {
-      sumOfNegative++;
+      if (userTemp < 0) {
+        sumOfNegative++;
+      }
     }
     return sumOfNegative;
   }
