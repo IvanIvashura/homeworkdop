@@ -10,26 +10,41 @@
 
 <body>
     <script>
-        // 12. З клавіатури вводяться поступово числа.
-        // Знайти два найбільші числа.
-        // Ввід здійснюється до тих пір, поки різниця між такими числами є більшою за 5.
+        // Задача 0.
+        // Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.
 
-        let userNum;
-        const userDifferent = 5;
-        let firstlargestNum = -Infinity;
-        let secondLargestNum = -Infinity;
-
-        do {
-            userNum = parseInt(prompt('Введіть числа'))
-            if (firstlargestNum < userNum) {
-                firstlargestNum = userNum
-            } else if (firstlargestNum > userNum && secondLargestNum < userNum) {
-                firstlargestNum = userNum
+        let numberOfYear = function (month) {
+            let result;
+            switch (month) {
+                case 1:
+                case 2:
+                case 12:
+                    result = 'зима'
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    result = 'весна'
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    result = 'літо'
+                    break;
+                case 9:
+                case 10:
+                case 11:
+                    result = 'осінь'
+                    break;
+                default:
+                    result = 'Невідомий місяць'
+                    break;
             }
-        } while (firstlargestNum - secondLargestNum <= 5);
-        alert(`Найбільше 1 ${firstlargestNum}`)
-        alert(`Найбільше 2 ${secondLargestNum}`)
+            return result
+        }
 
+        let numberOfMoth = parseInt(prompt('Введіть номер місяця'))
+        alert(numberOfYear(numberOfMoth))
     </script>
 </body>
 

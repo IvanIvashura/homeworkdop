@@ -9,23 +9,23 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <script>
-    // 16. У бригаді, що працює на сінокосі, є N сінокосарок.
-    // Перша сінокосарка працювала m годин,
-    // а кожна наступна на 10 хв більше, ніж попередня.
-    // Скільки годин працювала вся бригада ?
-
-    let numberWorkers = parseInt(prompt('Введіть кількість робочих'));
-    let firstWorker = parseInt(prompt('Введіть кількість годин яку працював перший робітник'));
-
-    let totalMinutes = 0;
-    let currentMinutes = firstWorker * 60;
-
-    for (let i = 0; i < numberWorkers; i++) {
-        currentMinutes += 10;
-        totalMinutes += currentMinutes
+    // Задача 2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.
+    let workDays = 5;
+    let dayOfWeek = function (days) {
+        let result
+        if (days <= workDays && days > 0) {
+            result = 'Робочий день тижня'
+        } else if (days > 7) {
+            result = 'Наступний тиждень'
+        } else {
+            result = 'Неробочий день тижня'
+        }
+        return result
     }
-    let allTime = (totalMinutes / 60)
-    alert(`${allTime.toFixed(1)}`)
+
+    let numberOfDay = parseInt(prompt('Введіть день тижня'))
+    alert(dayOfWeek(numberOfDay))
+
 </script>
 
 <body>

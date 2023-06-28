@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 2</title>
+
+</head>
+<script>
+  // Задача 5. Створити окремі функції, які переводять:
+  // Сантиметри у дюйми;
+  // Кілограми у фунти;
+  // Кілометри у милі.
+
+  let cantimeters = function (num) {
+    return num / 2.54;
+  }
+  let kilograms = function (num) {
+    return num * 2.20462262;
+  }
+  let kilometrs = function (num) {
+    return num / 1.609344;
+  }
+
+  let cantimetersNum = parseInt(prompt('Введіть довжину в сантиметрах'))
+  let kilogramsNum = parseInt(prompt('Введіть вагу у кілограмах'))
+  let kilometrsNum = parseInt(prompt('Введіть відстань в кілометрах'))
+
+  alert(cantimeters(cantimetersNum))
+  alert(kilograms(cantimetersNum))
+  alert(kilometrs(cantimetersNum))
+
+
+
+</script>
+
+<body>
+</body>
+
+</html>

@@ -8,40 +8,39 @@
     <title>Задача 1</title>
 </head>
 <script>
-    // 15. Тир.На полі з 10 клітинок розміщують зайця.
-    // За один крок заєць може стрибати на відстань від 0 до 3 позицій у будь - якому напрямку.
-    // З клавіатури вводиться позиція пострілу.
-    // Гра продовжується поки  у користувача не закінчаться патрони
-    // кількість вводиться з клавіатури або не буде влучання
+    // Задача 3. Створити окремі функції, які для 4 чисел знаходять:
+    //  1) суму;
+    //  2) добуток;
+    //  3)середнє арифметичне;
+    //  4)мінімальне значення.
 
-    let minNum = 1;
-    let maxNum = 10;
-
-    let rabbitPlace = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
-
-    let weaponsNum = parseInt(prompt('Введіть кількість патронів'))
-
-    let userShoot;
-
-    do {
-        userShoot = parseInt(prompt('Введіть клітинку для пострілу від 1 до 10'))
-
-        if (userShoot == rabbitPlace) {
-            alert('Ви влучили')
-            break;
-        } else if (rabbitPlace > userShoot) {
-            alert('Ви не влучили, та налякали зайця')
-            rabbitPlace += Math.floor(Math.random() * 4); // ?
-        } else {
-            alert('Ви не влучили, та налякали зайця')
-            rabbitPlace -= Math.floor(Math.random() * 4); // ??
-        }
-        weaponsNum--;
-    } while (weaponsNum > 0 && userShoot !== rabbitPlace);
-    if (weaponsNum <= 0) {
-        alert('У вас закінчились патрони')
-
+    let sumOfNumbers = function (num1, num2, num3, num4) {
+        return num1 + num2 + num3 + num4;
     }
+    let prodOfNumbers = function (num1, num2, num3, num4) {
+        return num1 * num2 * num3 * num4;
+    }
+    let averageOfNumbers = function (num1, num2, num3, num4) {
+        return (num1 + num2 + num3 + num4) / 4;
+    }
+    let minOfNumbers = function (num1, num2, num3, num4) {
+        return Math.min(num1, num2, num3, num4);
+    }
+
+
+    let firstNum = parseInt(prompt('Введіть число 1'));
+    let secondNum = parseInt(prompt('Введіть число 2'));
+    let thirdNum = parseInt(prompt('Введіть число 3'));
+    let fourthNum = parseInt(prompt('Введіть число 4'));
+
+    alert(sumOfNumbers(firstNum, secondNum, thirdNum, fourthNum));
+    alert(prodOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
+    alert(averageOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
+    alert(minOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
+
+
+
+
 </script>
 
 <body>

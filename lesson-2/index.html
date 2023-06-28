@@ -8,33 +8,57 @@
     <title>Задача -2</title>
 </head>
 <script>
-    // 7. Користувач загадує натуральне число від 1 до N.
-    // Шляхом задавання мінімальної кількості запитань знайти вказане число
-    // (застосувати бінарний пошук, на кожному кроці якого інтервал пошуку зменшується на 2
-    // шляхом порівняння з елементом, який знаходиться у центрі поточного інтервалу).
+    //   Задача 1. Створити функцію, яка за номером місяця повертає його назву.
 
-    let minNum = 1;
-    let userNum = parseInt(prompt('Введіть число'))
-    let questionNum;
-    let centerNum;
-
-    do {
-        centerNum = Math.floor((minNum + userNum) / 2)
-        let randomNum = minNum + Math.floor(Math.random() * (userNum - centerNum + 1));
-        questionNum = confirm(`Ваше число ${randomNum}?`)
-
-        if (randomNum == userNum) {
-            alert(`Вітаю више число було вгадане`)
-        } else if (userNum > randomNum) {
-            minNum = randomNum + 1;
-        } else {
-            userNum = randomNum - 1;
+    let nameOfMonth = function (month) {
+        let result
+        switch (month) {
+            case 1:
+                result = 'січень'
+                break;
+            case 2:
+                result = 'лютий'
+                break;
+            case 3:
+                result = 'березень'
+                break;
+            case 4:
+                result = 'квітень'
+                break;
+            case 5:
+                result = 'травень'
+                break;
+            case 6:
+                result = 'червень'
+                break;
+            case 7:
+                result = 'липень'
+                break;
+            case 8:
+                result = 'серпень'
+                break;
+            case 9:
+                result = 'вересень'
+                break;
+            case 10:
+                result = 'жовтень'
+                break;
+            case 11:
+                result = 'листопад'
+                break;
+            case 12:
+                result = 'грудень'
+                break;
+            default:
+                result = 'Невідомий місяць'
+                break;
         }
+        return result
 
+    }
 
-
-    } while (questionNum !== true);
-
+    let numberOfMoth = parseInt(prompt('Введіть номер місяця'))
+    alert(nameOfMonth(numberOfMoth))
 </script>
 
 <body>
