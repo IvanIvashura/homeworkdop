@@ -9,58 +9,102 @@
 
 </head>
 <script>
-  // Задача 4. 
-  // Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів:
-  // кількість парних, кількість додатних, кількість більших за 100.
+  // Задача 7. Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+  //  за весь рік;
+  // у першій половині року;
+  // у другій половині року;
+  // за літо;
+  // за ІІ квартал;
+  // за парні місяці (з парними номерами);
+  // за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
 
-  let oddNumbers = function (num1, num2, num3) {
-    let result = 0;
-    if (num1 % 2 == 0) {
-      result++
+
+  //  за весь рік;
+  function getPaymentsOfYear(payments) {
+    let sumOfPaymentsYear = 0;
+    for (let i = 0; i < payments.length; i++) {
+      sumOfPaymentsYear += payments[i]
     }
-    if (num2 % 2 == 0) {
-      result++
-    }
-    if (num3 % 2 == 0) {
-      result++
-    }
-    return result
-  }
-  let positiveNumbers = function (num1, num2, num3) {
-    let result = 0;
-    if (num1 > 0) {
-      result++
-    }
-    if (num2 > 0) {
-      result++
-    }
-    if (num3 > 0) {
-      result++
-    }
-    return result
-  }
-  let bigNumbers = function (num1, num2, num3) {
-    let result = 0;
-    if (num1 > 100) {
-      result++
-    }
-    if (num2 > 100) {
-      result++
-    }
-    if (num3 > 100) {
-      result++
-    }
-    return result
+    return sumOfPaymentsYear
   }
 
-  let firstNum = parseInt(prompt('Введіть число 1'));
-  let secondNum = parseInt(prompt('Введіть число 2'));
-  let thirdNum = parseInt(prompt('Введіть число 3'));
+  // у першій половині року;
+  function firstPartOfYear(payments) {
+    let sumOffirstPartYear = 0;
+    for (let i = 0; i < 6; i++) {
+      sumOffirstPartYear += payments[i]
+    }
+    return sumOffirstPartYear
+  }
 
-  alert(oddNumbers(firstNum, secondNum, thirdNum))
-  alert(positiveNumbers(firstNum, secondNum, thirdNum))
-  alert(bigNumbers(firstNum, secondNum, thirdNum))
+  // у другій половині року;
+  function secondPartOfYear(payments) {
+    let sumOfSecondPartYear = 0;
+    for (let i = 6; i < 12; i++) {
+      sumOfSecondPartYear += payments[i]
+    }
+    return sumOfSecondPartYear
+  }
 
+  // за літо;
+  function summerPayments(payments) {
+    let sumOfSummerPayments = 0;
+    for (let i = 6; i < 9; i++) {
+      sumOfSummerPayments += payments[i]
+    }
+    return sumOfSummerPayments
+  }
+
+  // за ІІ квартал;
+  function secondQuarterOfYear(payments) {
+    let sumOfsecondQuarterOfYear = 0;
+    for (let i = 4; i < 7; i++) {
+      sumOfsecondQuarterOfYear += payments[i]
+    }
+    return sumOfsecondQuarterOfYear
+  }
+
+  // за парні місяці (з парними номерами);
+  function evenMonth(payments) {
+    let sumOfEvenMonth = 0;
+    for (let i = 2; i < payments.length; i += 2) {
+      sumOfEvenMonth += payments[i]
+    }
+    return sumOfEvenMonth
+  }
+
+  // за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+  function startOfSeason(payments) {
+    let sumOfStartSeason = 0;
+    for (let i = 0; i < payments.length; i += 3) {
+      sumOfStartSeason += payments[i]
+    }
+    return sumOfStartSeason
+  }
+
+  //                0     1    2      3      4    5    6      7     8     9    10    11     12
+  let payments = [2400, 3200, 2800, 3000, 4500, 3200, 3100, 2000, 1700, 2000, 3200, 4000, 4300]
+
+  let yearPayment = getPaymentsOfYear(payments)
+  document.write(`Загальна сума платіжок протягом року ${yearPayment}`)
+
+  let firstPartOfPayments = firstPartOfYear(payments)
+  document.write(`<br> Загальна сума платіжок за 1 половину року ${firstPartOfPayments}`)
+
+  let secondPartOfPayments = secondPartOfYear(payments)
+  document.write(`<br> Загальна сума платіжок за 2 половину року ${secondPartOfPayments}`)
+
+  let summerPayment = summerPayments(payments)
+  document.write(`<br> Загальна сума платіжок за літо${summerPayment}`)
+
+  let quarterPayments = secondQuarterOfYear(payments)
+  document.write(`<br> Загальна сума платіжок за літо${quarterPayments}`)
+
+  let evenPayments = evenMonth(payments)
+  document.write(`<br> Загальна сума платіжок за літо${evenPayments}`)
+
+  let seasonPayments = startOfSeason(payments)
+  document.write(`<br> Загальна сума платіжок за літо${seasonPayments}`)
 
 </script>
 

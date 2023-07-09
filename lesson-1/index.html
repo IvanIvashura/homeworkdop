@@ -10,41 +10,57 @@
 
 <body>
     <script>
-        // Задача 0.
-        // Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.
+        // Задача 1.
+        // Дано масив, який містить оцінки з К предметів.
+        // Знайти середній бал і з’ясувати до якої категорії він відноситься
+        // (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно),
+        // трійочник(є хоча би одна трійка)).
 
-        let numberOfYear = function (month) {
-            let result;
-            switch (month) {
-                case 1:
-                case 2:
-                case 12:
-                    result = 'зима'
-                    break;
-                case 3:
-                case 4:
-                case 5:
-                    result = 'весна'
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                    result = 'літо'
-                    break;
-                case 9:
-                case 10:
-                case 11:
-                    result = 'осінь'
-                    break;
-                default:
-                    result = 'Невідомий місяць'
-                    break;
+
+        function getMin(numbers) {
+            let min = numbers[0]
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] < min) {
+                    min = numbers[i]
+                }
             }
-            return result
+            return min
         }
 
-        let numberOfMoth = parseInt(prompt('Введіть номер місяця'))
-        alert(numberOfYear(numberOfMoth))
+        function getStudentCategory(getScore) {
+            let category
+            switch (getMin(getScore)) {
+                case 1:
+                case 2:
+                    category = 'двійочник'
+                    break;
+                case 3:
+                    category = 'трійочник'
+                    break;
+                case 4:
+                case 5:
+                    category = 'відмінник'
+                    break;
+                default:
+                    break;
+            }
+            return category
+        }
+
+        function getScore(scoreNum) {
+            let score = []
+            for (let i = 0; i < scoreNum; i++) {
+                let scoreUser = parseInt(prompt(`Введіть оцінку ${i + 1}`))
+                score.push(scoreUser)
+            }
+            return score
+        }
+
+        let scoreNum = parseInt(prompt('Введіть кількість оцінок'));
+        let scores = getScore(scoreNum);
+        let categoryUser = getStudentCategory(scores);
+        document.write(categoryUser);
+
     </script>
 </body>
 

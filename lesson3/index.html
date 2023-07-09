@@ -9,30 +9,44 @@
 
 </head>
 <script>
-  // Задача 5. Створити окремі функції, які переводять:
-  // Сантиметри у дюйми;
-  // Кілограми у фунти;
-  // Кілометри у милі.
+  // Задача 8. 
+  // Дано одновимірний масив, у якому зберігається певна виграшна сума
+  // (елементи заповнюються випадковим чином значеннями від - 500 до 500).
+  // Надаючи користувачу можливість вибирати номери елементів
+  // (поки він не відмовиться).
+  // Знаходити сумарний виграш.
 
-  let cantimeters = function (num) {
-    return num / 2.54;
+  function getNum(numbers) {
+    let winSum = []
+    const minNum = -500;
+    const maxNum = 500;
+    for (let i = 0; i < numbers; i++) {
+      let getRandomNum = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+      winSum.push(getRandomNum)
+    }
+    return winSum
   }
-  let kilograms = function (num) {
-    return num * 2.20462262;
+
+  function totalSumOfWin(numbers) {
+    let winOfSum = 0;
+    do {
+      let userWinNum = parseInt(prompt(`Введіть число від 0 до ${allWinNums.length} включно`))
+      if (userWinNum >= 0 && userWinNum <= allWinNums.length) {
+        winOfSum += allWinNums[userWinNum]
+      }
+      let wantcontinue = confirm('Бажаєте продовжити?')
+      if (!wantcontinue) {
+        break;
+      }
+    } while (true)
+    return winOfSum
   }
-  let kilometrs = function (num) {
-    return num / 1.609344;
-  }
-
-  let cantimetersNum = parseInt(prompt('Введіть довжину в сантиметрах'))
-  let kilogramsNum = parseInt(prompt('Введіть вагу у кілограмах'))
-  let kilometrsNum = parseInt(prompt('Введіть відстань в кілометрах'))
-
-  alert(cantimeters(cantimetersNum))
-  alert(kilograms(cantimetersNum))
-  alert(kilometrs(cantimetersNum))
 
 
+  let userNumbers = parseInt(prompt('Введіть кількість чисел'))
+  let allWinNums = getNum(userNumbers)
+  let totalwin = totalSumOfWin(allWinNums)
+  document.write(`Ваш виграш ${totalwin}`)
 
 </script>
 

@@ -8,39 +8,63 @@
     <title>Задача 1</title>
 </head>
 <script>
-    // Задача 3. Створити окремі функції, які для 4 чисел знаходять:
-    //  1) суму;
-    //  2) добуток;
-    //  3)середнє арифметичне;
-    //  4)мінімальне значення.
+    // Задача 5. Дано послідовність оцінок учня. Підрахувати кількість:
+    //  1)  двійок
+    //  2)	кількість хороших оцінок(добре, відмінно);
+    //  3)	кількість оцінок, які нижче середнього.
 
-    let sumOfNumbers = function (num1, num2, num3, num4) {
-        return num1 + num2 + num3 + num4;
-    }
-    let prodOfNumbers = function (num1, num2, num3, num4) {
-        return num1 * num2 * num3 * num4;
-    }
-    let averageOfNumbers = function (num1, num2, num3, num4) {
-        return (num1 + num2 + num3 + num4) / 4;
-    }
-    let minOfNumbers = function (num1, num2, num3, num4) {
-        return Math.min(num1, num2, num3, num4);
+    function getScore(numOfScore) {
+        let userScore = []
+        for (let i = 0; i < numOfScore; i++) {
+            let printScore = parseInt(prompt(`Введіть ${i + 1} оцінку`))
+            userScore.push(printScore)
+        }
+        return userScore
     }
 
+    function getBadScores(scores) {
+        let sumOfBadScores = 0;
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] == 2) {
+                sumOfBadScores++
+            }
+        }
+        return sumOfBadScores
+    }
 
-    let firstNum = parseInt(prompt('Введіть число 1'));
-    let secondNum = parseInt(prompt('Введіть число 2'));
-    let thirdNum = parseInt(prompt('Введіть число 3'));
-    let fourthNum = parseInt(prompt('Введіть число 4'));
+    function getGoodScores(scores) {
+        let sumOfGoodScores = 0;
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] >= 4) {
+                sumOfGoodScores++
+            }
+        }
+        return sumOfGoodScores
+    }
 
-    alert(sumOfNumbers(firstNum, secondNum, thirdNum, fourthNum));
-    alert(prodOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
-    alert(averageOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
-    alert(minOfNumbers(firstNum, secondNum, thirdNum, fourthNum))
+    function getMiddleScores(scores) {
+        let sumOfMiddleScores = 0;
+        for (let i = 0; i < scores.length; i++) {
+            if (scores[i] == 3) {
+                sumOfMiddleScores++
+            }
+        }
+        return sumOfMiddleScores
+    }
 
+    let userPrintNumOfScores = parseInt(prompt('Введіть кількість оцінок'))
 
+    let scores = getScore(userPrintNumOfScores)
+    document.write(`Всього оцінок ${scores}`)
 
+    let badScores = getBadScores(scores)
+    document.write(`<br> Кількість двійок ${badScores}`)
 
+    let goodScores = getGoodScores(scores)
+    document.write(`<br> Кількість хороших оцінок ${goodScores}`)
+
+    let middleScores = getMiddleScores(scores)
+    document.write(`<br> Кількість середніх оцінок ${middleScores}`)
 </script>
 
 <body>

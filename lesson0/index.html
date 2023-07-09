@@ -9,22 +9,37 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <script>
-    // Задача 2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.
-    let workDays = 5;
-    let dayOfWeek = function (days) {
-        let result
-        if (days <= workDays && days > 0) {
-            result = 'Робочий день тижня'
-        } else if (days > 7) {
-            result = 'Наступний тиждень'
-        } else {
-            result = 'Неробочий день тижня'
+    // Задача 3. Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+
+    function getNames(numbersOfName) {
+        let studentsName = []
+        for (let i = 0; i < numbersOfName; i++) {
+            let name = prompt('Введіть ім*я учня')
+            studentsName.push(name)
         }
-        return result
+        return studentsName
     }
 
-    let numberOfDay = parseInt(prompt('Введіть день тижня'))
-    alert(dayOfWeek(numberOfDay))
+    function countNameLikeIvan(names, targetName) {
+        let sumOfIvanName = 0
+        for (let i = 0; i < names.length; i++) {
+            if (names[i] == targetName) {
+                sumOfIvanName++
+            }
+        }
+        return sumOfIvanName
+    }
+
+
+    let userNumbersOfName = parseInt(prompt('Введіть кількість учнів'))
+
+    let names = getNames(userNumbersOfName)
+    document.write(`Всі імена ${names}`);
+
+    let targetName = 'Ivan';
+    let occurrences = countNameLikeIvan(names, targetName);
+
+    document.write(`<br>Кількість імен Іван = ${occurrences}`)
 
 </script>
 
