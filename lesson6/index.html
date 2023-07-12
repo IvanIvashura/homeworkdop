@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 6</title>
+
+</head>
+<script>
+  // 6.Дано масив елементів.Усі елементи, які більші за перший елемент помножити на 2
+
+  function userArr(num) {
+    let arr = []
+    for (let i = 0; i < num; i++) {
+      let userPrintNums = parseInt(prompt(`Введіть ${i + 1} елемент`))
+      arr.push(userPrintNums)
+    }
+    return arr
+  }
+  function multipOnTwo(allArr) {
+    let multipElements = []
+    for (const moreThan of allArr) {
+      if (moreThan > allArr[0]) {
+        multipElements.push(moreThan * 2)
+      }
+    }
+    return multipElements
+  }
+
+  let usersNumbers = parseInt(prompt(`Введіть кількість елементів`))
+  let allArr = userArr(usersNumbers)
+  let result = multipOnTwo(allArr)
+  document.write(`Елементи яки були більші за 1 число масиву, помножені на 2 та записані в окремий масив <br> ${result}`)
+</script>
+
+<body>
+</body>
+
+</html>

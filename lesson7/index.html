@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 7</title>
+
+</head>
+<script>
+  // 7.Дано масив цін.
+  // Змінити цей масив так, що на ціни товарів, які більші за 1000 грн.дати 30 % знижки.
+  let productPrices = [1400, 1700, 700, 800, 1500, 775, 955]
+  const discountNum = 1000;
+  productPrices.forEach((element, index) => {
+    if (element > discountNum) {
+      productPrices[index] = (element * 0.7).toFixed();
+    }
+  });
+  document.write(productPrices)
+</script>
+
+<body>
+</body>
+
+</html>

@@ -2,113 +2,23 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Задача 2</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
 </head>
 <script>
-  // Задача 7. Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
-  //  за весь рік;
-  // у першій половині року;
-  // у другій половині року;
-  // за літо;
-  // за ІІ квартал;
-  // за парні місяці (з парними номерами);
-  // за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+    // 2. Користувач вводить кількість елементів.
+    // Створити масив, у якому перша половина заповнена 1 - цями, а друга заповнена 7 - ками.
 
-
-  //  за весь рік;
-  function getPaymentsOfYear(payments) {
-    let sumOfPaymentsYear = 0;
-    for (let i = 0; i < payments.length; i++) {
-      sumOfPaymentsYear += payments[i]
-    }
-    return sumOfPaymentsYear
-  }
-
-  // у першій половині року;
-  function firstPartOfYear(payments) {
-    let sumOffirstPartYear = 0;
-    for (let i = 0; i < 6; i++) {
-      sumOffirstPartYear += payments[i]
-    }
-    return sumOffirstPartYear
-  }
-
-  // у другій половині року;
-  function secondPartOfYear(payments) {
-    let sumOfSecondPartYear = 0;
-    for (let i = 6; i < 12; i++) {
-      sumOfSecondPartYear += payments[i]
-    }
-    return sumOfSecondPartYear
-  }
-
-  // за літо;
-  function summerPayments(payments) {
-    let sumOfSummerPayments = 0;
-    for (let i = 6; i < 9; i++) {
-      sumOfSummerPayments += payments[i]
-    }
-    return sumOfSummerPayments
-  }
-
-  // за ІІ квартал;
-  function secondQuarterOfYear(payments) {
-    let sumOfsecondQuarterOfYear = 0;
-    for (let i = 4; i < 7; i++) {
-      sumOfsecondQuarterOfYear += payments[i]
-    }
-    return sumOfsecondQuarterOfYear
-  }
-
-  // за парні місяці (з парними номерами);
-  function evenMonth(payments) {
-    let sumOfEvenMonth = 0;
-    for (let i = 2; i < payments.length; i += 2) {
-      sumOfEvenMonth += payments[i]
-    }
-    return sumOfEvenMonth
-  }
-
-  // за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
-  function startOfSeason(payments) {
-    let sumOfStartSeason = 0;
-    for (let i = 0; i < payments.length; i += 3) {
-      sumOfStartSeason += payments[i]
-    }
-    return sumOfStartSeason
-  }
-
-  //                0     1    2      3      4    5    6      7     8     9    10    11     12
-  let payments = [2400, 3200, 2800, 3000, 4500, 3200, 3100, 2000, 1700, 2000, 3200, 4000, 4300]
-
-  let yearPayment = getPaymentsOfYear(payments)
-  document.write(`Загальна сума платіжок протягом року ${yearPayment}`)
-
-  let firstPartOfPayments = firstPartOfYear(payments)
-  document.write(`<br> Загальна сума платіжок за 1 половину року ${firstPartOfPayments}`)
-
-  let secondPartOfPayments = secondPartOfYear(payments)
-  document.write(`<br> Загальна сума платіжок за 2 половину року ${secondPartOfPayments}`)
-
-  let summerPayment = summerPayments(payments)
-  document.write(`<br> Загальна сума платіжок за літо${summerPayment}`)
-
-  let quarterPayments = secondQuarterOfYear(payments)
-  document.write(`<br> Загальна сума платіжок за літо${quarterPayments}`)
-
-  let evenPayments = evenMonth(payments)
-  document.write(`<br> Загальна сума платіжок за літо${evenPayments}`)
-
-  let seasonPayments = startOfSeason(payments)
-  document.write(`<br> Загальна сума платіжок за літо${seasonPayments}`)
-
+    let arr = new Array(10)
+    arr.fill(1, 0, 5)
+    arr.fill(7, 5)
+    document.write(arr)
 </script>
 
 <body>
+
 </body>
 
 </html>

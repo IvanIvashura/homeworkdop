@@ -2,52 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Задача 2</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <script>
-  // Задача 8. 
-  // Дано одновимірний масив, у якому зберігається певна виграшна сума
-  // (елементи заповнюються випадковим чином значеннями від - 500 до 500).
-  // Надаючи користувачу можливість вибирати номери елементів
-  // (поки він не відмовиться).
-  // Знаходити сумарний виграш.
+    // 3. Користувач вводить кількість елементів
+    // Створити масив, у якому перші 5 елементів заповнені 1 - цями,
+    // а інші до кінця масиву заповнені 7 - ками.
 
-  function getNum(numbers) {
-    let winSum = []
-    const minNum = -500;
-    const maxNum = 500;
-    for (let i = 0; i < numbers; i++) {
-      let getRandomNum = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-      winSum.push(getRandomNum)
-    }
-    return winSum
-  }
+    let userNum = parseInt(prompt('Введіть кількість елементів'));
 
-  function totalSumOfWin(numbers) {
-    let winOfSum = 0;
-    do {
-      let userWinNum = parseInt(prompt(`Введіть число від 0 до ${allWinNums.length} включно`))
-      if (userWinNum >= 0 && userWinNum <= allWinNums.length) {
-        winOfSum += allWinNums[userWinNum]
-      }
-      let wantcontinue = confirm('Бажаєте продовжити?')
-      if (!wantcontinue) {
-        break;
-      }
-    } while (true)
-    return winOfSum
-  }
+    let arr = new Array(userNum)
+    arr.fill(1, 0, 5)
+    arr.fill(7, 5)
 
-
-  let userNumbers = parseInt(prompt('Введіть кількість чисел'))
-  let allWinNums = getNum(userNumbers)
-  let totalwin = totalSumOfWin(allWinNums)
-  document.write(`Ваш виграш ${totalwin}`)
-
+    document.write(arr)
 </script>
 
 <body>
