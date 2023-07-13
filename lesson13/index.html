@@ -25,10 +25,10 @@
         let array = randNum(userNum, max, min)
 
 
-        // 3)Сформувати список з тих цін, які більші за попереднє значення
+        // 13)Знайти індекс останньої ціни, що більше за 1000
 
-        let moreThanBefore = array.filter((el, index) => el < array[index + 1])
-        document.write(moreThanBefore)
+        let indexSmallerThan1000 = array.findLastIndex(el => el < 1000)
+        document.write(indexSmallerThan1000) 
     </script>
 </body>
 

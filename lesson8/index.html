@@ -2,44 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Задача 10</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
 </head>
-<script>
-  // 10. Дано масив цін у грн.Податок складає 20 %.
-  // Сформувати масив, який буде містити величину сплаченого податку у грн.
-
-  // На момент роз'язання задачі ще був не ознайомився з методом map
-
-  function taxFromPrices(num) {
-    let pricesWithTax = []
-    for (const element of num) {
-      pricesWithTax.push(element * 0.2)
-    }
-    return pricesWithTax
-  }
-  function sumOfAllTax(firstArr) {
-    let sum = 0;
-    for (const element of firstArr) {
-      sum += element
-    }
-    return sum
-  }
-
-  let pricesNum = [2300, 3500, 4800, 2700, 5600];
-  const tax = 0.8;
-
-  let firstArr = taxFromPrices(pricesNum)
-  document.write(`Ціни після податку ${firstArr}<br>`)
-  let result = sumOfAllTax(firstArr)
-  document.write(`Сума сплаченого податку ${result}`)
-
-</script>
 
 <body>
+    <script>
+        // Задача.Дано історію цін на цінні папери за деякий період(згенерувати від 1 до 10000)
+        function randNum(userNum, max, min) {
+            let arr = []
+            for (let i = 0; i < userNum; i++) {
+                let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
+                arr.push(randomGenerate)
+            }
+            return arr
+        }
+        let userNum = parseInt(prompt('Введіть кількість цін'));
+        const max = 10000;
+        const min = 1;
+        let array = randNum(userNum, max, min)
+
+
+        // 8)Підрахувати кількість цін, що більше за 1000
+
+        let numOfMoreThan1000 = array.reduce((sum, el) => el > 1000 ? sum + 1 : sum, 0)
+        document.write(numOfMoreThan1000)
+    </script>
 </body>
 
 </html>

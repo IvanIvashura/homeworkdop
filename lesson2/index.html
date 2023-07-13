@@ -8,13 +8,28 @@
     <title>Задача 2</title>
 </head>
 <script>
-    // 2. Користувач вводить кількість елементів.
-    // Створити масив, у якому перша половина заповнена 1 - цями, а друга заповнена 7 - ками.
+    function randNum(userNum, max, min) {
+        let arr = []
+        for (let i = 0; i < userNum; i++) {
+            let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
+            arr.push(randomGenerate)
+        }
+        return arr
+    }
+    let userNum = parseInt(prompt('Введіть кількість цін'));
+    const max = 10000;
+    const min = 1;
+    let array = randNum(userNum, max, min)
+    // 2)Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
 
-    let arr = new Array(10)
-    arr.fill(1, 0, 5)
-    arr.fill(7, 5)
-    document.write(arr)
+    let newMoreThan1000 = array.reduce((start, el, index) => {
+        if (el > 1000) {
+            start.push(el)
+        }
+        return start
+    }, [])
+    document.write(newMoreThan1000)
+
 </script>
 
 <body>

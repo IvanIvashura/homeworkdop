@@ -10,12 +10,25 @@
 
 <body>
     <script>
-        //  1. Користувач вводить кількість елементів
-        // .Створити масив, що складається з вказаної кількості елементів заповнених нулями.
+        // Задача.Дано історію цін на цінні папери за деякий період(згенерувати від 1 до 10000)
+        function randNum(userNum, max, min) {
+            let arr = []
+            for (let i = 0; i < userNum; i++) {
+                let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
+                arr.push(randomGenerate)
+            }
+            return arr
+        }
+        let userNum = parseInt(prompt('Введіть кількість цін'));
+        const max = 10000;
+        const min = 1;
+        let array = randNum(userNum, max, min)
+        // 1)Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
 
-        let userNum = parseInt(prompt('Введіть кількість елементів'))
-        let arr = new Array(userNum).fill(0)
-        document.write(arr)
+        let moreThan1000 = array.filter((el) => el > 1000)
+        document.write(moreThan1000)
+
+
     </script>
 </body>
 

@@ -25,10 +25,12 @@
         let array = randNum(userNum, max, min)
 
 
-        // 3)Сформувати список з тих цін, які більші за попереднє значення
 
-        let moreThanBefore = array.filter((el, index) => el < array[index + 1])
-        document.write(moreThanBefore)
+        // 9)Підрахувати суму цін, що більше за 1000
+
+        let sumMoreThan1000 = array.reduce((prevSum, el) => el > 1000 ? prevSum += el : prevSum, 0)
+        document.write(sumMoreThan1000)
+
     </script>
 </body>
 

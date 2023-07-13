@@ -5,21 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задача 4</title>
+    <title>Задача 1</title>
 </head>
-<script>
-    //  4.Дано масив елементів.Вивести на екран елементи, що більші за 100
-
-    let arr = [95, 43, 55, 100, 102, 203, 22, 505]
-
-    for (const numOfElements of arr) {
-        if (numOfElements > 100) {
-            document.write(`${numOfElements} <br>`)
-        }
-    }
-</script>
 
 <body>
+    <script>
+        // Задача.Дано історію цін на цінні папери за деякий період(згенерувати від 1 до 10000)
+        function randNum(userNum, max, min) {
+            let arr = []
+            for (let i = 0; i < userNum; i++) {
+                let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
+                arr.push(randomGenerate)
+            }
+            return arr
+        }
+        let userNum = parseInt(prompt('Введіть кількість цін'));
+        const max = 10000;
+        const min = 1;
+        let array = randNum(userNum, max, min)
+
+
+        // 4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+        let maxOfArr = array.reduce((max, el, index) => {
+            if (el > max) {
+                el
+            }
+            return el
+        }, 0)
+        document.write(`Максимальне значення ${maxOfArr}`)
+
+        let newPercents = array.map((element, index, array) => ((element / maxOfArr) * 100)) // чомусь коли додаю .fofixed(2) - видає undefind
+        document.write(`<br>${newPercents}`);
+
+    </script>
 </body>
 
 </html>
