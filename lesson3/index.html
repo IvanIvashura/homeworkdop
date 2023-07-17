@@ -10,25 +10,74 @@
 
 <body>
     <script>
-        // Задача.Дано історію цін на цінні папери за деякий період(згенерувати від 1 до 10000)
-        function randNum(userNum, max, min) {
-            let arr = []
-            for (let i = 0; i < userNum; i++) {
-                let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
-                arr.push(randomGenerate)
-            }
+        // Задача 3. Морський бій.
+        // Випадковим чином на двовимірному полі розміром 6 * 6 розташовується 5 кораблів.
+        // Користувач стріляє вказуючи координати.
+        // Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+
+        function getRandomNum(minValue, maxValue) {
+            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+
+        function getArray(arrayLenght) {
+            let arr = new Array(arrayLenght).fill(0)
             return arr
         }
-        let userNum = parseInt(prompt('Введіть кількість цін'));
-        const max = 10000;
-        const min = 1;
-        let array = randNum(userNum, max, min)
+
+        function getTable(rowsNum, columnsNum) {
+            let table = [];
+            for (let i = 0; i < rowsNum; i++) {
+                let getRow = getArray(columnsNum)
+                table.push(getRow)
+            }
+            return table
+        }
+
+        function getPosition(rowsNum, columnsNum, ships) {
+            let tablePrint = getTable(rowsNum, columnsNum)
+            let countOfShip = 0;
+            while (ships > countOfShip) {
+                let randomRow = getRandomNum(0, rowsNum - 1)
+                let randomColumn = getRandomNum(0, columnsNum - 1)
+                alert(randomRow, randomRow)
+                if (tablePrint[randomRow][randomColumn] == 0) {
+                    tablePrint[randomRow][randomColumn] = 1;
+                    countOfShip++
+                }
+            }
+            return tablePrint
+        }
+
+        let rows = 6;
+        let columns = 6;
+        let ships = 5;
+        let getInfoOfBatlefield = getPosition(rows, columns, ships)
+        console.log(getInfoOfBatlefield)
 
 
-        // 3)Сформувати список з тих цін, які більші за попереднє значення
+        let userShoots = parseInt(prompt('Введіть кількість снарядів'))
+        let userShootX
+        let userShootY
 
-        let moreThanBefore = array.filter((el, index) => el < array[index + 1])
-        document.write(moreThanBefore)
+        while (ships > 0 && userShoots > 0) {
+            userShootX = parseInt(prompt('Введіть постріл по Х'))
+            userShootY = parseInt(prompt('Введіть постріл по У'))
+            if (getInfoOfBatlefield[userShootX][userShootY] == 1) {
+                getInfoOfBatlefield[userShootX][userShootY] = 0
+                ships--
+                alert(`Ви влучили, залишилось ${ships} кораблі `)
+            } else {
+                alert('Ви не влучили')
+            }
+            userShoots--;
+            if (ships == 0) {
+                alert('Ви виграли')
+            }
+            if (userShoots == 0) {
+                alert('Снаряди закінчились')
+                break
+            }
+        }
     </script>
 </body>
 

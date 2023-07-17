@@ -10,24 +10,97 @@
 
 <body>
     <script>
-        // Задача.Дано історію цін на цінні папери за деякий період(згенерувати від 1 до 10000)
-        function randNum(userNum, max, min) {
-            let arr = []
-            for (let i = 0; i < userNum; i++) {
-                let randomGenerate = Math.floor(Math.random() * (max - min + 1)) + min;
-                arr.push(randomGenerate)
+        // Знайти суми елементів у вказаній області
+        // (масиви розділені на 4 рівні частини - не звертаємо увагу на криві малюнки ☺)
+
+        let arr = [
+            [2, 5, 8, 6, 1, 2],
+            [3, 2, 1, 9, 3, 2],
+            [5, 4, 6, 6, 2, 1],
+            [7, 6, 9, 9, 3, 1],
+        ]
+
+        // 1)
+        let sumFirst = 0;
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 3; j++) {
+                sumFirst += arr[i][j]
             }
-            return arr
         }
-        let userNum = parseInt(prompt('Введіть кількість цін'));
-        const max = 10000;
-        const min = 1;
-        let array = randNum(userNum, max, min)
-        // 1)Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
 
-        let moreThan1000 = array.filter((el) => el > 1000)
-        document.write(moreThan1000)
+        // document.write(sumFirst)
 
+
+        // 2)
+
+
+        let sumSecond = 0;
+        for (let i = 0; i < 2; i++) {
+            for (let j = 3; j < arr[i].length; j++) {
+                sumSecond += arr[i][j]
+            }
+        }
+
+        // document.write(sumSecond)
+
+        //  3) 
+        let sumThird = 0;
+        for (let i = 2; i < arr.length; i++) {
+            for (let j = 0; j < 3; j++) {
+                sumThird += arr[i][j]
+            }
+        }
+
+        // document.write(sumThird)
+
+        // 4)
+
+        let sumFourth = 0;
+        for (let i = 2; i < arr.length; i++) {
+            for (let j = 3; j < arr[i].length; j++) {
+                sumFourth += arr[i][j]
+            }
+        }
+
+        // document.write(sumFourth)
+
+        // 5) Суму парних рядків
+
+        let sumEven = 0;
+
+        for (let i = 0; i < arr.length; i += 2) {
+            for (let j = 0; j < arr[i].length; j++) {
+                sumEven += arr[i][j]
+            }
+        }
+        // document.write(sumEven)
+
+        // 6) Суму непарних стовпців
+
+        let sumOdd = 0;
+        for (let i = 1; i < arr.length; i += 2) {
+            for (let j = 0; j < arr[i].length; j++) {
+                sumOdd += arr[i][j]
+            }
+        }
+
+        // document.write(sumOdd)
+
+        // 7) У парних рядках – непарні стовпці, у непарних – парні.
+
+        let sumOfOddAndEven = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                for (let j = 1; j < arr[i].length; j += 2) {
+                    sumOfOddAndEven += arr[i][j]
+                }
+            } else {
+                for (let o = 0; o < arr[i].length; o += 2) {
+                    sumOfOddAndEven += arr[i][o]
+                }
+            }
+        }
+        document.write(sumOfOddAndEven)
 
     </script>
 </body>
