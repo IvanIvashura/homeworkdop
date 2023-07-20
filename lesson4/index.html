@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<script>
+    // Задача 4. Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення 
+    // відповідних таблиць за зразком.
+
+
+    function getArrayRandom(minValue, maxValue, elNums) {
+        let arr = []
+        for (let i = 0; i < elNums; i++) {
+            let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+            arr.push(randNum)
+        }
+        return arr
+    }
+
+    function swap(arr, i, j) {
+        const temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    function boobleSort(arr) {
+        let i
+        let current
+        for (let c = 1; c < arr.length; c++) {
+            current = arr[c]
+            i = c - 1
+            while (i >= 0 && arr[i] > current) {
+                arr[i + 1] = arr[i]
+                i = i - 1
+                document.write(`[${arr}]<br>`)
+            }
+            arr[i + 1] = current
+        }
+    }
+
+
+    const numOfElements = 30;
+    let array = getArrayRandom(1, 1000, numOfElements)
+
+    let getBoobleSort = boobleSort(array)
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

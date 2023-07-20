@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<script>
+    // Задача 5. Дано масив імен.
+    // Застосовуючи відповідне сортування та бінарний пошук визначити,
+    // чи є у масиві ім’я «Olga» і під яким індексом.
+
+
+    let namesArr = ["Oleh", "Artem", "Alvina", "Sergey", "Ira", "Nika", "Olga", "Maksim"]
+    let searchName = "Olga"
+
+    namesArr.sort();
+    document.write(namesArr)
+
+    function getSearchedName(namesArr, searchName) {
+        let start = 0
+        let end = namesArr.length - 1
+        let middleOfArr
+
+        let index
+        while (start <= end) {
+            middleOfArr = Math.floor((start + end) / 2)
+            if (namesArr[middleOfArr] === searchName) {
+                index = namesArr.indexOf(namesArr[middleOfArr]);
+                break
+            }
+            if (namesArr[middleOfArr] > searchName) {
+                end = middleOfArr - 1
+            }
+            if (namesArr[middleOfArr] < searchName) {
+                start = middleOfArr + 1
+            }
+        }
+        if (searchName !== undefined) {
+            document.write(`<br> У масиві є шукане імя під номером ${index}`)
+        } else {
+            document.write(`У масиві немає шуканого імя`)
+        }
+    }
+
+    let getResult = getSearchedName(namesArr, searchName)
+</script>
+
+<body>
+
+</body>
+
+</html>

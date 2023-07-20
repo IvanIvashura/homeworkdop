@@ -10,74 +10,46 @@
 
 <body>
     <script>
-        // Задача 3. Морський бій.
-        // Випадковим чином на двовимірному полі розміром 6 * 6 розташовується 5 кораблів.
-        // Користувач стріляє вказуючи координати.
-        // Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+        // Задача 3. Дано масив 30 випадкових цілих чисел.
+        // Підрахувати скільки було обмінів під час сортування включеннями.
 
-        function getRandomNum(minValue, maxValue) {
-            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
-        }
-
-        function getArray(arrayLenght) {
-            let arr = new Array(arrayLenght).fill(0)
+        function getArrayRandom(minValue, maxValue, elNums) {
+            let arr = []
+            for (let i = 0; i < elNums; i++) {
+                let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                arr.push(randNum)
+            }
             return arr
         }
-
-        function getTable(rowsNum, columnsNum) {
-            let table = [];
-            for (let i = 0; i < rowsNum; i++) {
-                let getRow = getArray(columnsNum)
-                table.push(getRow)
-            }
-            return table
+        function swap(arr, i, j) {
+            const temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
 
-        function getPosition(rowsNum, columnsNum, ships) {
-            let tablePrint = getTable(rowsNum, columnsNum)
-            let countOfShip = 0;
-            while (ships > countOfShip) {
-                let randomRow = getRandomNum(0, rowsNum - 1)
-                let randomColumn = getRandomNum(0, columnsNum - 1)
-                alert(randomRow, randomRow)
-                if (tablePrint[randomRow][randomColumn] == 0) {
-                    tablePrint[randomRow][randomColumn] = 1;
-                    countOfShip++
+        function getChoiceSort(arr) {
+            let counts = 0;
+            let currentEl
+            let i
+            for (let c = 1; c < arr.length; c++) {
+                currentEl = arr[c]
+                i = c - 1
+                while (i >= 0 && arr[i] > currentEl) {
+                    arr[i + 1] = arr[i]
+                    i = i - 1
+                    counts++
                 }
+                arr[i + 1] = currentEl
             }
-            return tablePrint
+            return counts
         }
 
-        let rows = 6;
-        let columns = 6;
-        let ships = 5;
-        let getInfoOfBatlefield = getPosition(rows, columns, ships)
-        console.log(getInfoOfBatlefield)
+        const numOfElements = 30;
+        let array = getArrayRandom(1, 1000, numOfElements)
 
-
-        let userShoots = parseInt(prompt('Введіть кількість снарядів'))
-        let userShootX
-        let userShootY
-
-        while (ships > 0 && userShoots > 0) {
-            userShootX = parseInt(prompt('Введіть постріл по Х'))
-            userShootY = parseInt(prompt('Введіть постріл по У'))
-            if (getInfoOfBatlefield[userShootX][userShootY] == 1) {
-                getInfoOfBatlefield[userShootX][userShootY] = 0
-                ships--
-                alert(`Ви влучили, залишилось ${ships} кораблі `)
-            } else {
-                alert('Ви не влучили')
-            }
-            userShoots--;
-            if (ships == 0) {
-                alert('Ви виграли')
-            }
-            if (userShoots == 0) {
-                alert('Снаряди закінчились')
-                break
-            }
-        }
+        let printSortNum = getChoiceSort(array)
+        document.write(printSortNum)
+        console.log(array)
     </script>
 </body>
 

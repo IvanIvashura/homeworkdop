@@ -10,98 +10,42 @@
 
 <body>
     <script>
-        // Знайти суми елементів у вказаній області
-        // (масиви розділені на 4 рівні частини - не звертаємо увагу на криві малюнки ☺)
+        // Задача 1. Дано масив 30 випадкових цілих чисел.
+        // Підрахувати скільки було обмінів під час сортування бульбашкою
 
-        let arr = [
-            [2, 5, 8, 6, 1, 2],
-            [3, 2, 1, 9, 3, 2],
-            [5, 4, 6, 6, 2, 1],
-            [7, 6, 9, 9, 3, 1],
-        ]
-
-        // 1)
-        let sumFirst = 0;
-        for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 3; j++) {
-                sumFirst += arr[i][j]
+        function getArrayRandom(minValue, maxValue, elNums) {
+            let arr = []
+            for (let i = 0; i < elNums; i++) {
+                let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                arr.push(randNum)
             }
+            return arr
         }
 
-        // document.write(sumFirst)
-
-
-        // 2)
-
-
-        let sumSecond = 0;
-        for (let i = 0; i < 2; i++) {
-            for (let j = 3; j < arr[i].length; j++) {
-                sumSecond += arr[i][j]
-            }
-        }
-
-        // document.write(sumSecond)
-
-        //  3) 
-        let sumThird = 0;
-        for (let i = 2; i < arr.length; i++) {
-            for (let j = 0; j < 3; j++) {
-                sumThird += arr[i][j]
-            }
-        }
-
-        // document.write(sumThird)
-
-        // 4)
-
-        let sumFourth = 0;
-        for (let i = 2; i < arr.length; i++) {
-            for (let j = 3; j < arr[i].length; j++) {
-                sumFourth += arr[i][j]
-            }
-        }
-
-        // document.write(sumFourth)
-
-        // 5) Суму парних рядків
-
-        let sumEven = 0;
-
-        for (let i = 0; i < arr.length; i += 2) {
-            for (let j = 0; j < arr[i].length; j++) {
-                sumEven += arr[i][j]
-            }
-        }
-        // document.write(sumEven)
-
-        // 6) Суму непарних стовпців
-
-        let sumOdd = 0;
-        for (let i = 1; i < arr.length; i += 2) {
-            for (let j = 0; j < arr[i].length; j++) {
-                sumOdd += arr[i][j]
-            }
-        }
-
-        // document.write(sumOdd)
-
-        // 7) У парних рядках – непарні стовпці, у непарних – парні.
-
-        let sumOfOddAndEven = 0;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 == 0) {
-                for (let j = 1; j < arr[i].length; j += 2) {
-                    sumOfOddAndEven += arr[i][j]
+        function getBoobleSort(a) {
+            let changed
+            let counts = 0;
+            do {
+                changed = false
+                for (let i = 1; i < a.length; i++) {
+                    if (a[i - 1] > a[i]) {
+                        let tmp = a[i - 1]
+                        a[i - 1] = a[i]
+                        a[i] = tmp
+                        counts++
+                        changed = true
+                    }
                 }
-            } else {
-                for (let o = 0; o < arr[i].length; o += 2) {
-                    sumOfOddAndEven += arr[i][o]
-                }
-            }
+            } while (changed);
+            return counts
         }
-        document.write(sumOfOddAndEven)
 
+        const numOfElements = 30;
+        let array = getArrayRandom(1, 1000, numOfElements)
+
+        let numOfBoobleSort = getBoobleSort(array)
+        document.write(numOfBoobleSort)
+        console.log(array)
     </script>
 </body>
 

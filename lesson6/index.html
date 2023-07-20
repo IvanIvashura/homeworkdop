@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<script>
+    // Задача 6. Дано масив імен. 
+    // Застосовуючи відповідне сортування та бінарний пошук визначити,
+    // чи є у масиві ім’я довжиною 5 символів і під яким індексом.
+
+
+    function lenghtOfElArr(arr, length) {
+        let index
+        let start = 0;
+        let end = arr.length - 1
+        let getMiddle = Math.floor((start + end) / 2)
+        while (start <= end) {
+            if (arr[getMiddle].length == length) {
+                index = getMiddle
+                break
+            }
+            if (arr[getMiddle].length > length) {
+                start = getMiddle + 1
+            }
+            if (arr[getMiddle].length < length) {
+                end = getMiddle - 1
+            }
+        }
+        return index
+    }
+
+
+    let searchLength = 5;
+    let namesArr = ["Oleh", "Artem", "Alik", "Serg", "Ira", "Nika", "Olga", "Maksim"]
+    namesArr.sort();
+    document.write(namesArr)
+
+    let getResultOfSearchName = lenghtOfElArr(namesArr, searchLength)
+
+    if (getResultOfSearchName !== -1) {
+        document.write(`У масиві є шукане імя під номером ${getResultOfSearchName}`)
+    } else {
+        document.write('Шукане імя відсутнє')
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>
