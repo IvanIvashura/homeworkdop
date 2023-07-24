@@ -10,46 +10,40 @@
 
 <body>
     <script>
-        // Задача 3. Дано масив 30 випадкових цілих чисел.
-        // Підрахувати скільки було обмінів під час сортування включеннями.
+        //  Задача 2. Реалізувати бінарний пошук(розглядали на попередніх уроках) з використанням рекурсивного алгоритму.
 
-        function getArrayRandom(minValue, maxValue, elNums) {
-            let arr = []
-            for (let i = 0; i < elNums; i++) {
-                let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
-                arr.push(randNum)
-            }
-            return arr
-        }
-        function swap(arr, i, j) {
-            const temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-
-        function getChoiceSort(arr) {
-            let counts = 0;
-            let currentEl
-            let i
-            for (let c = 1; c < arr.length; c++) {
-                currentEl = arr[c]
-                i = c - 1
-                while (i >= 0 && arr[i] > currentEl) {
-                    arr[i + 1] = arr[i]
-                    i = i - 1
-                    counts++
+        function binarySearch(arr, targetNum, start, end) {
+            do {
+                let getMiddle = Math.floor((start + end) / 2)
+                if (arr[getMiddle] == targetNum) {
+                    return getMiddle
                 }
-                arr[i + 1] = currentEl
-            }
-            return counts
+                if (arr[getMiddle] > targetNum) {
+                    return binarySearch(arr, targetNum, start, getMiddle - 1)
+                }
+                if (arr[getMiddle] < targetNum) {
+                    return binarySearch(arr, targetNum, getMiddle + 1, end)
+                }
+            } while (end > start);
+            return - 1
         }
 
-        const numOfElements = 30;
-        let array = getArrayRandom(1, 1000, numOfElements)
 
-        let printSortNum = getChoiceSort(array)
-        document.write(printSortNum)
-        console.log(array)
+        let array = [88, 56, 72, 77, 89, 101, 222, 321, 87, 45];
+
+        array.sort((a, b) => a - b)
+        document.write(array)
+
+        let searchNum = 77
+        let startOfArr = 0;
+        let endOfArr = array.length - 1
+
+        let serchEl = binarySearch(array, searchNum, startOfArr, endOfArr)
+
+        if (serchEl !== -1) {
+            document.write(`Шукане число під номером ${serchEl}`)
+        } else
+            document.write('Шукане число відсутнє')
     </script>
 </body>
 

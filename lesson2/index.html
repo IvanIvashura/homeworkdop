@@ -8,54 +8,19 @@
     <title>Задача 2</title>
 </head>
 <script>
-    //  Задача 2. Дано масив 30 випадкових цілих чисел.
-    // Підрахувати скільки було обмінів під час сортування змішуванням.
-
-    function getArrayRandom(minValue, maxValue, elNums) {
-        let arr = []
-        for (let i = 0; i < elNums; i++) {
-            let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
-            arr.push(randNum)
-        }
-        return arr
+    // Задача 1. Нехай, де.Визначити.Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів
+    // РЕКУРСИВНО
+    function func(i) {
+        if (i == 0) {
+            return 1
+        } else
+            return func(i - 1) + 2 * i
     }
+    document.write(func(10))
 
-    function swap(arr, i, j) {
-        const temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    function cocktailSort(arr) {
-        let leftIndex = 0;
-        let rightIndex = arr.length - 1;
-        let counts = 0;
-        while (leftIndex < rightIndex) {
-            for (let i = leftIndex; i < rightIndex; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    swap(arr, i, i + 1)
-                    counts++
-                }
-            }
-            rightIndex--
-            for (let i = rightIndex; i > leftIndex; i--) {
-                if (arr[i] < arr[i - 1]) {
-                    swap(arr, i, i - 1)
-                    counts++
-                }
-            }
-            leftIndex++
-        }
-        return counts
-    }
+    // Не розумію як це взагалі розвязати неререкурсивно
 
 
-    const numOfElements = 30;
-    let array = getArrayRandom(1, 1000, numOfElements)
-
-    let numOfCocktailSort = cocktailSort(array)
-    document.write(numOfCocktailSort)
-    console.log(array)
 </script>
 
 <body>

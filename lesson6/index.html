@@ -9,44 +9,29 @@
 </head>
 
 <script>
-    // Задача 6. Дано масив імен. 
-    // Застосовуючи відповідне сортування та бінарний пошук визначити,
-    // чи є у масиві ім’я довжиною 5 символів і під яким індексом.
+    // Задача 5. Тренажер додавання.
+    // Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.
 
 
-    function lenghtOfElArr(arr, length) {
-        let start = 0;
-        let end = arr.length - 1
-        while (start <= end) {
-            let getMiddle = Math.floor((start + end) / 2)
+    const min = 1
+    const max = 1000
 
-            if (arr[getMiddle].length == length) {
-                return getMiddle
-                break
-            }
-            if (arr[getMiddle].length > length) {
-                start = getMiddle + 1
-            }
-            if (arr[getMiddle].length < length) {
-                end = getMiddle - 1
-            }
+    let userInterval = setInterval(() => {
+        let getRandomFirst = Math.floor(Math.random() * ((max - min) / 2) + min);
+        let getRandomSecond = Math.floor(Math.random() * ((max - min) / 2) + min);
+        let getSum = getRandomFirst + getRandomSecond
+        let userSum = parseInt(prompt(`Скільки буде ${getRandomFirst} + ${getRandomSecond}`))
+        if (userSum == getSum) {
+            alert('Ви вгадали')
+        } else {
+            alert('Спробуйте ще раз')
         }
-        return -1
-    }
+    }, 10000);
 
-
-    let searchLength = 5;
-    let namesArr = ["Oleh", "Abram", "Aliko", "Serg", "Ira", "Nika", "Olga", "Abbas"]
-    namesArr.sort((a, b) => a.length - b.length);
-    document.write(`[${namesArr}]`)
-
-    let getResultOfSearchName = lenghtOfElArr(namesArr, searchLength)
-
-    if (getResultOfSearchName !== -1) {
-        document.write(`<br>У масиві є шукане імя під номером ${getResultOfSearchName}`)
-    } else {
-        document.write(`<br>Шукане імя відсутнє`)
-    }
+    setTimeout(() => {
+        clearInterval(userInterval);
+        alert("Час вийшов");
+    }, 60000)
 </script>
 
 <body>

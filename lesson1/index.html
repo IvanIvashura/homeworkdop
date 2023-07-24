@@ -10,42 +10,18 @@
 
 <body>
     <script>
-        // Задача 1. Дано масив 30 випадкових цілих чисел.
-        // Підрахувати скільки було обмінів під час сортування бульбашкою
+        //   Задача 0. Реалізувати рекурсивну функцію знаходження степеня числа а
 
-        function getArrayRandom(minValue, maxValue, elNums) {
-            let arr = []
-            for (let i = 0; i < elNums; i++) {
-                let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
-                arr.push(randNum)
-            }
-            return arr
+        function getSquare(a, n) {
+            if (n === 1) {
+                return a
+            } else
+                return getSquare(a, n - 1) * a
         }
 
-        function getBoobleSort(a) {
-            let changed
-            let counts = 0;
-            do {
-                changed = false
-                for (let i = 1; i < a.length; i++) {
-                    if (a[i - 1] > a[i]) {
-                        let tmp = a[i - 1]
-                        a[i - 1] = a[i]
-                        a[i] = tmp
-                        counts++
-                        changed = true
-                    }
-                }
-            } while (changed);
-            return counts
-        }
 
-        const numOfElements = 30;
-        let array = getArrayRandom(1, 1000, numOfElements)
+        document.write(getSquare(5, 3))
 
-        let numOfBoobleSort = getBoobleSort(array)
-        document.write(numOfBoobleSort)
-        console.log(array)
     </script>
 </body>
 

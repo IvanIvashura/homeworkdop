@@ -9,45 +9,39 @@
 </head>
 
 <script>
-    // Задача 4. Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення 
-    // відповідних таблиць за зразком.
+    // Задача 3.  
+    // З використанням замикань розробити ітератор, тобто функцію,
+    // що буде поступово за окремими викликами видавати по одне значення від заданого мінімального
+    // до заданого максимального.Якщо значення досягне максимального,
+    // то наступним буде мінімальне значення.
+    // З використанням цієї функції реалізувати перебір номерів місяців.
 
-
-    function getArrayRandom(minValue, maxValue, elNums) {
-        let arr = []
-        for (let i = 0; i < elNums; i++) {
-            let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
-            arr.push(randNum)
-        }
-        return arr
-    }
-
-    function swap(arr, i, j) {
-        const temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    function boobleSort(arr) {
-        let i
-        let current
-        for (let c = 1; c < arr.length; c++) {
-            current = arr[c]
-            i = c - 1
-            while (i >= 0 && arr[i] > current) {
-                arr[i + 1] = arr[i]
-                i = i - 1
-                document.write(`[${arr}]<br>`)
+    function getIterator(min, max) {
+        let currentMonthNum = min
+        function getMonth() {
+            if (currentMonthNum == max) {
+                currentMonthNum = min
+            } else {
+                ++currentMonthNum
             }
-            arr[i + 1] = current
+            return currentMonthNum
         }
+        return getMonth
+    }
+
+    let minMonth = 1;
+    let maxMonth = 12;
+
+    let resutlOfIterator = getIterator(minMonth, maxMonth)
+
+    let userNum = 15
+
+    for (let i = 0; i < userNum; i++) {
+        document.write(`<br>${resutlOfIterator()}`)
     }
 
 
-    const numOfElements = 30;
-    let array = getArrayRandom(1, 1000, numOfElements)
 
-    let getBoobleSort = boobleSort(array)
 
 
 </script>
