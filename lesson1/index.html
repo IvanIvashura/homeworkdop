@@ -10,17 +10,156 @@
 
 <body>
     <script>
-        //   Задача 0. Реалізувати рекурсивну функцію знаходження степеня числа а
+        //  Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+        // ----- Властивості------
+        //   назва компанії на час розробки(назву періодично змінюють)
+        //   власник компанії
+        //   споснсори(масив спонсорів)
+        //      * прізвище спонсора
+        //      * ім’я  спонсора
+        //      * сума вкладень спонсора
+        //   рік випуску
+        //   вартість сайту
 
-        function getSquare(a, n) {
-            if (n === 1) {
-                return a
-            } else
-                return getSquare(a, n - 1) * a
-        }
+        let webSiteObject = [
+
+            {
+                nameCompany: 'agriCulture',
+                ownerCompany: 'Mike Tyson',
+                sponsors: [
+                    {
+                        surnameSponsor: 'Tyson',
+                        nameSponsor: 'Mike',
+                        capital: 500000,
+                    },
+                    {
+                        surnameSponsor: 'Kolomoyskiy',
+                        nameSponsor: 'Valera',
+                        capital: 200000,
+                    },
+                    {
+                        surnameSponsor: 'Poroshenko',
+                        nameSponsor: 'Petr',
+                        capital: 100000,
+                    },
+                ],
+                yearOfStart: 2022,
+                priceOfSite: 3000000,
+            },
+            {
+                nameCompany: 'globalTech',
+                ownerCompany: 'Elona Musk',
+                sponsors: [
+                    {
+                        surnameSponsor: 'Jobs',
+                        nameSponsor: 'Stive ',
+                        capital: 228000,
+                    },
+                    {
+                        surnameSponsor: 'West',
+                        nameSponsor: 'Kanye',
+                        capital: 50000,
+                    },
+                    {
+                        surnameSponsor: 'Stivenson',
+                        nameSponsor: 'Eric',
+                        capital: 300000,
+                    },
+                ],
+                yearOfStart: 2009,
+                priceOfSite: 5500000,
+            },
+            {
+                nameCompany: 'IItechno',
+                ownerCompany: 'Stiven Sadler',
+                sponsors: [
+                    {
+                        surnameSponsor: 'Paterson',
+                        nameSponsor: 'Jack ',
+                        capital: 55000,
+                    },
+                    {
+                        surnameSponsor: 'Kiano',
+                        nameSponsor: 'Jhonson',
+                        capital: 50000,
+                    },
+                ],
+                yearOfStart: 2002,
+                priceOfSite: 1000,
+            },
+        ]
 
 
-        document.write(getSquare(5, 3))
+        // Знайти:
+        //   1) загальну вартість усіх сайтів
+
+        // let totalSumOfAllWebSites = webSiteObject.reduce((prevSum, site) => prevSum + site.priceOfSite, 0)
+        // document.write(totalSumOfAllWebSites)
+
+
+        //   2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+
+        // let numOfSites = webSiteObject.reduce((prevNum, site) => site.yearOfStart >= 2000 && site.yearOfStart <= 2009 ? ++prevNum : prevNum, 0)
+        // document.write(numOfSites)
+
+        //   3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+
+        // let numOfSitesMorThan100000 = webSiteObject.reduce((prevNum, site) => {
+        //     let sponsorsMoreThan100000 = site.sponsors.reduce((sum, sponsor) => sum + sponsor.capital, 0)
+        //     return sponsorsMoreThan100000 > 500000 ? prevNum + 1 : prevNum
+        // }, 0)
+        // document.write(numOfSitesMorThan100000)
+
+        //   4) створити загальний список усіх спонсорів(поки можуть повторюватись, просто зібрати усі у масив)
+
+        // let allSponsors = webSiteObject.reduce((prevSponsors, site) => {
+        //     site.sponsors.forEach(sponsor => prevSponsors.push({ surnameSponsor: sponsor.surnameSponsor, nameSponsor: sponsor.nameSponsor }))
+        //     return prevSponsors
+        // }, [])
+        // console.log(allSponsors)
+
+        //   5) знайти рік, коли прибуток був найбільшим
+
+        // let maxYearOfCost = webSiteObject.reduce((max, el) => {
+        //     return el.priceOfSite > max.price ? { price: el.priceOfSite, year: el.yearOfStart } : max
+        // }, { price: 0, year: 0 })
+        // console.log(maxYearOfCost)
+        // document.write(maxYearOfCost.year)
+
+        // //   6) упорядкувати список за спаданням прибутку
+
+        // function getSort(arr) {
+        //     let i
+        //     let current
+        //     for (let c = 1; c < arr.length; c++) {
+        //         current = arr[c]
+        //         i = c - 1
+        //         while (i >= 0 && arr[i].priceOfSite < current.priceOfSite) {
+        //             arr[i + 1] = arr[i]
+        //             i = i - 1
+        //         }
+        //         arr[i + 1] = current
+        //     }
+        //     return arr
+        // }
+
+        // let sortedArr = getSort(webSiteObject)
+        // console.log(sortedArr)
+
+        // АБО /////
+
+        // webSiteObject.sort((site1, site2) => site2.priceOfSite - site1.priceOfSite);
+        // console.log(webSiteObject);
+
+        //   7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+        // let newArrs = webSiteObject.reduce((prevArr, site) => {
+        //     site.priceOfSite < 10000 ? prevArr[0].push(JSON.parse(JSON.stringify(site))) : prevArr[1].push(JSON.parse(JSON.stringify(site)))
+        //     return prevArr
+        // }, [[], []])
+
+        // console.log(newArrs[0])
+        // console.log(newArrs[1])
 
     </script>
 </body>
