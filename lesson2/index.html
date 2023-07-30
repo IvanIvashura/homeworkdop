@@ -8,27 +8,48 @@
     <title>Задача 2</title>
 </head>
 <script>
-    // Задача 2. Розробити функцію, у яку передають об’єкт(день, місяць, рік).
-    // Визначити, який буде рік через N місяців.
+    // Задача 1. Створити об’єкт «Тир».
+    // У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
 
-    let currentDate = {
-        day: 7,
-        month: 11,
-        year: 1996,
-    }
-
-    function getCurrentDate(currentDate, N) {
-        currentDate.month += N
-        if (currentDate.month > 12) {
-            currentDate.year += Math.floor(currentDate.month / 12);
-            currentDate.month %= 12;
+    class Shooting {
+        constructor(cellsNum, rabbitsNum) {
+            this.cellsNum = cellsNum
+            this.rabbitsNum = rabbitsNum
         }
-        return currentDate.year
+        getRandomNum(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+
+        getCells() {
+            this.fieldArr = new Array(this.cellsNum).fill(0)
+            for (let i = 0; i < this.rabbitsNum; i++) {
+                let randomIndex = this.getRandomNum(0, this.fieldArr.length)
+                this.fieldArr[randomIndex] = 1
+            }
+            return this.fieldArr
+        }
+        getGame() {
+            do {
+                let userShoot = parseInt(prompt(`Введіть клітинку для пострілу від 0 до ${this.fieldArr.length - 1}`))
+                if (this.fieldArr[userShoot] == 1) {
+                    this.rabbitsNum--
+                    this.fieldArr[userShoot] = 0
+                    alert(`Ви влучили залишилось ${this.rabbitsNum} зайців`)
+                } else
+                    alert(`Ви не влучили`)
+                let ask = confirm('Бажаєте продовжити?')
+            } while (this.rabbitsNum !== 0 || ask == true);
+
+            if (this.rabbitsNum == 0) {
+                alert(`Ви виграли`)
+            }
+        }
     }
 
-    let N = parseInt(prompt('Введіть кількість місяців'))
-    let getCurrentYear = getCurrentDate(currentDate, N)
-    document.write(getCurrentYear)
+    let game = new Shooting(10, 1)
+    game.getCells()
+    game.getGame()
+
 
 </script>
 

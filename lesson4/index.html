@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<body>
+    <script>
+        // Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+
+        // Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+        // Кількість правильних відповідей
+        // Кількість неправильних відповідей
+
+        // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+        // Перевірка правильності вказаної відповіді
+
+        class MultChecker {
+            constructor(currentNum) {
+                this.currentNum = currentNum
+                this.numOfTrue = 0
+                this.numOfFalse = 0
+            }
+            getRandom() {
+                this.randNum = 1 + Math.floor(Math.random() * 10);
+                return this.randNum
+            }
+            getResult() {
+                let userAnswer = parseInt(prompt(`Скільки буде ${this.currentNum} * ${this.randNum}?`))
+                let correctAnswer = this.currentNum * this.randNum
+                if (correctAnswer == userAnswer) {
+                    this.numOfTrue++
+                } else {
+                    this.numOfFalse++
+                }
+            }
+            render() {
+                document.write(`Кількість правильних відповідей ${this.numOfTrue.toString()}`)
+                document.write(`<br>Кількість неправильних відповідей ${this.numOfFalse.toString()}`)
+
+            }
+        }
+        let userNum = parseInt(prompt('Кількість прикладів'))
+        let checker = new MultChecker(2)
+        for (let i = 0; i < userNum; i++) {
+            checker.getRandom()
+            checker.getResult()
+        }
+        checker.render()
+
+
+    </script>
+</body>
+
+</html>
