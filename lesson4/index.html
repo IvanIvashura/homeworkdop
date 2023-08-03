@@ -10,47 +10,82 @@
 
 <body>
     <script>
-        // Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+        // Задача.Створити клас TBankomat,
+        // який моделює роботу банкомата.
+        // Клас повинен містити поля для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень.
+        // Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат,
+        // та метод зняття деякої суми.
 
-        // Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
-        // Кількість правильних відповідей
-        // Кількість неправильних відповідей
-
-        // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
-        // Перевірка правильності вказаної відповіді
-
-        class MultChecker {
-            constructor(currentNum) {
-                this.currentNum = currentNum
-                this.numOfTrue = 0
-                this.numOfFalse = 0
+        class TBankomat {
+            constructor() {
+                this.banknota = [
+                    {
+                        name: '5hriven',
+                        namePrice: 5,
+                        value: 5
+                    },
+                    {
+                        name: '10hriven',
+                        namePrice: 10,
+                        value: 15
+                    },
+                    {
+                        name: '20hriven',
+                        namePrice: 20,
+                        value: 7
+                    },
+                    {
+                        name: '50hriven',
+                        namePrice: 50,
+                        value: 3
+                    },
+                    {
+                        name: '100hriven',
+                        namePrice: 100,
+                        value: 8
+                    },
+                    {
+                        name: '200hriven',
+                        namePrice: 200,
+                        value: 4
+                    }
+                ]
             }
-            getRandom() {
-                this.randNum = 1 + Math.floor(Math.random() * 10);
-                return this.randNum
+
+            getMinNum() {
+                let minBanknote = this.banknota.reduce((minBanknote, banknote) => {
+                    return banknote.namePrice < minBanknote.namePrice && banknote.value > 0 ? banknote : minBanknote;
+                }, this.banknota[0]);
+
+                return minBanknote.namePrice;
             }
-            getResult() {
-                let userAnswer = parseInt(prompt(`Скільки буде ${this.currentNum} * ${this.randNum}?`))
-                let correctAnswer = this.currentNum * this.randNum
-                if (correctAnswer == userAnswer) {
-                    this.numOfTrue++
+
+            getMaxNum() {
+                return this.banknota.reduce((prevSum, el) => prevSum += (el.namePrice * el.value), 0)
+            }
+
+            getMoneyForGiving(userSum) {
+                let totalSum = this.getMaxNum()
+                let minNum = this.getMinNum()
+                if (userSum >= minNum && userSum <= totalSum) {
+                    totalSum -= userSum
+                    alert('Operatio uccessful')
+                    alert(`Залишок ${totalSum}`)
                 } else {
-                    this.numOfFalse++
+                    throw new Error
                 }
             }
-            render() {
-                document.write(`Кількість правильних відповідей ${this.numOfTrue.toString()}`)
-                document.write(`<br>Кількість неправильних відповідей ${this.numOfFalse.toString()}`)
 
+            toString() {
+                return `Мінімальна сума для видачі ${this.getMinNum()}, максимальна сума для видачі ${this.getMaxNum()}  `
             }
         }
-        let userNum = parseInt(prompt('Кількість прикладів'))
-        let checker = new MultChecker(2)
-        for (let i = 0; i < userNum; i++) {
-            checker.getRandom()
-            checker.getResult()
-        }
-        checker.render()
+
+        let getResult = new TBankomat()
+        document.write(getResult.toString())
+        let userSum = parseFloat(prompt('введіть суму для зняття'))
+        getResult.getMoneyForGiving(userSum)
+
 
 
     </script>

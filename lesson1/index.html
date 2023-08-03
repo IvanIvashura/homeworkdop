@@ -10,38 +10,149 @@
 
 <body>
     <script>
-        // Задача 0.
-        // Дано два об’єкта.
-        // Обидва містять масив цілих чисел.
-        // При цьому у одному з них є функція знаходження суми,
-        // а у іншому – функція для знаходження добутку тих,
-        // які знаходяться між заданими мінімальним і максимальних значенням.
+        //    Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”.
+        //    Дата представляється структурою із трьома полями.
+        //    Реалізувати методи збільшення /
+        //    зменшення дати на певну кількість днів, місяців чи років.
+        //    Введення та виведення дати реалізувати за допомогою методу  toString.
 
 
-        let firstObject = {
-            arr: [20, 30, 40, 30, 20, 33, 44, 55, 77],
-            getSum: function () {
-                return this.arr.reduce((sum, el) => sum += el, 0)
+        class TDate {
+            #day;
+            #month;
+            #year;
+
+            constructor(initDay, initMonth, initYear) {
+                this.day = initDay;
+                this.month = initMonth;
+                this.year = initYear;
             }
+
+            get day() {
+                return this.#day;
+            }
+            set day(newDay) {
+                if (newDay < 0) throw new Error('Невідомий день місяця');
+                this.#day = newDay;
+            }
+
+
+            get month() {
+                return this.#month;
+            }
+            set month(newMonth) {
+                if (newMonth < 0) throw new Error('Невідомий день місяця');
+                this.#month = newMonth;
+            }
+
+            get year() {
+                return this.#year;
+            }
+            set year(newYear) {
+                if (newYear < 1) throw new Error('Невідомий рік');
+                this.#year = newYear;
+            }
+
+            toString() {
+                return `День ${this.day} місяць ${this.month} рік ${this.year}`;
+            }
+
+            // Методи збільшення
+            getAddday(userAddDay) {
+                this.day += userAddDay;
+                if (this.day > 30) {
+                    this.month += Math.floor(this.day / 30);
+                    this.day %= 30;
+                }
+                return this.day;
+            }
+
+            getAddMonth(userAddMonth) {
+                this.month += userAddMonth;
+                if (this.month > 12) {
+                    this.year += Math.floor(this.month / 12);
+                    this.month %= 12;
+                }
+                return this.month;
+            }
+
+            getAddYear(userAddYear) {
+                this.year += userAddYear;
+                return this.year;
+            }
+
+
+            // Методи зменшення
+            getSubtractDay(userSubtractDay) {
+                for (let i = 0; i < userSubtractDay; i++) {
+                    this.day--
+                    while (this.day <= 1) {
+                        this.month--;
+                        if (this.month < 1) {
+                            this.year--;
+                            this.month = 12;
+                        }
+                        this.day += 30;
+                    }
+                }
+                return this.day;
+
+            }
+
+            getSubtractMonth(userSubtractMonth) {
+                for (let i = 0; i < userSubtractMonth; i++) {
+                    this.month--
+                    while (this.month < 1) {
+                        this.year--;
+                        this.month += 12;
+                    }
+                }
+                return this.month;
+            }
+
+            getSubtractYear(userSubtractYear) {
+                this.year -= userSubtractYear;
+                return this.year;
+            }
+
         }
 
-        let secondObject = {
-            arr: [10, 330, 56, 10, 333, 44, 55, 777],
-            getProd: function (min, max) {
-                return this.arr.reduce((sum, el) => el > min && el < max ? sum * el : sum, 1)
-            }
-        }
-
-        let firstSum = firstObject.getSum()
-        let firstProd = secondObject.getProd(1, 50)
-        let secondSum = firstObject.getSum.call(secondObject)
-        let secondProd = secondObject.getProd.call(firstObject, 1, 30)
+        /////////////////////////////////////////////// /////////////////////////////////////////////// /////////////////////////////////////////////// 
 
 
-        console.log(firstSum)
-        console.log(firstProd)
-        console.log(secondSum)
-        console.log(secondProd)
+
+        let userDay = parseInt(prompt('Введіть день'));
+        let userMonth = parseInt(prompt('Введіть місяць'));
+        let userYear = parseInt(prompt('Введіть рік'));
+
+        let date1 = new TDate(userDay, userMonth, userYear);
+        document.write(date1);
+
+        // додавання 
+        let userAddDay = parseInt(prompt('Введіть кількість днів для додавання'));
+        let userAddMonth = parseInt(prompt('Введіть кількість місяців для додавання'));
+        let userAddYear = parseInt(prompt('Введіть кількість років для додавання'));
+
+        date1.getAddday(userAddDay);
+        date1.getAddMonth(userAddMonth);
+        date1.getAddYear(userAddYear);
+
+        document.write(`<br>${date1}`);
+
+        // віднімання 
+        setTimeout(() => {
+            let userSubtractDay = parseInt(prompt('Введіть кількість днів для віднімання'));
+            let userSubtractMonth = parseInt(prompt('Введіть кількість місяців для віднімання'));
+            let userSubtractYear = parseInt(prompt('Введіть кількість років для віднімання'));
+
+            date1.getSubtractDay(userSubtractDay)
+            date1.getSubtractMonth(userSubtractMonth)
+            date1.getSubtractYear(userSubtractYear)
+
+            document.write(`<br>${date1}`);
+        }, 5000);
+
+
 
 
     </script>

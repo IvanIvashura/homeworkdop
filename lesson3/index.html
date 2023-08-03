@@ -10,70 +10,109 @@
 
 <body>
     <script>
-        // Задача 2. Створити об’єкт «Авто».
+        // Задача 3. Об’єкт “Фірма” (використати члени-класи)
 
-        //  Марка
-        //  Розмір бака
-        //  Кількість наявних літрів
-        //  Кількість місць
-        //  Кількість пасажирів
+        // назва фірми;
+        // дата заснування (рік, місяць);
+        // послуги (назва послуги, вартість, термін виконання);
+        // адреси філіалів (країна, місто, вулиця, номер будинку);
 
-        // Заправка на вказану кількість літрів
-        // Виведення кількості пасажирів
-        // Додавання пасажирів
-        // Висадка пасажирів
+        // визначення кількості років існування фірми;
+        // виведення всіх філіалів фірми у вказаному місті;
+        // виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
 
 
-        class Car {
-            constructor(autoLabel, sizeOfTank, numOfLiters, numOfSeat, numOfPassangers) {
-                this.autoLabel = autoLabel
-                this.sizeOfTank = sizeOfTank
-                this.numOfLiters = numOfLiters
-                this.numOfSeat = numOfSeat
-                this.numOfPassangers = numOfPassangers
-            }
-            // Заправка на вказану кількість літрів
-            getFuelTunk() {
-                let userNumOfFuel = parseFloat(prompt('Введіть кількість літрів для заправки'))
-                if (this.numOfLiters + userNumOfFuel > this.sizeOfTank) {
-                    alert('У баці не хватає місця')
-                } else {
-                    this.numOfLiters += userNumOfFuel
-                    alert(`Бак заправлено на ${userNumOfFuel}, тепер у вашому баці ${this.numOfLiters} літрів пального`)
+        class Company {
+            constructor() {
+                this.name = 'Корсент'
+                this.established = {
+                    year: 2021,
+                    month: 11
                 }
-                return this.numOfLiters
+                this.services = [
+                    {
+                        name: 'cleaningHouse',
+                        price: 1000,
+                        time: 30
+                    },
+                    {
+                        name: 'cleaningCar',
+                        price: 3500,
+                        time: 45
+                    },
+                    {
+                        name: 'cleaningRoom',
+                        price: 400,
+                        time: 15
+                    }
+                ];
+                this.adressFilials = [
+                    {
+                        country: 'Ukraine',
+                        city: 'Київ',
+                        street: 'Богдана Кошевика',
+                        build: 12,
+                    },
+                    {
+                        country: 'USA',
+                        city: 'Маямі',
+                        street: 'Бідона',
+                        build: 15
+                    },
+                    {
+                        country: 'Germany',
+                        city: 'Берлін',
+                        street: 'Адольфа проспект',
+                        build: 17
+                    }
+                ];
             }
-            // Виведення кількості пасажирів
-            getPassangers() {
-                return document.write(this.numOfPassangers.toString())
+
+            //  methods 
+
+            getCurrentYear() {
+                let establishedYear = this.established.year
+                let currentYear = 2023
+                return currentYear - establishedYear
             }
-            // Додавання пасажирів
-            addPassangers() {
-                let userNumOfPassangers = parseInt(prompt('Введіть кількість пасажирів'))
-                if (this.numOfPassangers + userNumOfPassangers > this.numOfSeat) {
-                    alert('Не хватає місця')
-                } else {
-                    this.numOfPassangers += userNumOfPassangers
-                    alert(`тепер у вашому авто ${this.numOfPassangers} пасажирів`)
-                }
-                return this.numOfPassangers
+
+            getFilials(userCountry) {
+                return this.adressFilials.reduce((prevArr, el) => {
+                    if (el.country == userCountry) {
+                        prevArr.push(el)
+                    }
+                    return prevArr
+                }, [])
             }
-            // Висадка пасажирів
-            ejectPassangers() {
-                let userPassangersForEeject = parseInt(prompt('Введіть кількість пасажирів на вихід'))
-                if (this.numOfPassangers >= userPassangersForEeject) {
-                    return alert(`Тепер у вашому авто ${this.numOfPassangers - userPassangersForEeject} пасажирів`)
-                } else {
-                    return alert(`Ви ввели більше пасажирів ніж є`)
-                }
+
+            getServicesAndPrices(userMoney, userTime) {
+                return this.services.reduce((prevArr, el) => {
+                    if (el.price <= userMoney && el.time <= userTime) {
+                        prevArr.push(el.name)
+                    }
+                    return prevArr
+                }, [])
+            }
+
+
+            toString() {
+                let userCountry = prompt('Введіть країну з списку: Ukraine, Germany, USA');
+                let userMoney = prompt('Введіть кількість грошей');
+                let userTime = prompt('Введіть час за який потрібно виконати');
+
+                let filials = this.getFilials(userCountry);
+                let availableService = this.getServicesAndPrices(userMoney, userTime)
+                console.log(filials)
+                console.log(availableService)
+
+                return `кількість років ${this.getCurrentYear()}`;
             }
         }
 
-        let firstCar = new Car('BMW', 45, 20, 4, 2)
-        firstCar.getFuelTunk()
-        firstCar.getPassangers()
-        firstCar.addPassangers()
-        firstCar.ejectPassangers()
+        let getCompany = new Company()
+        document.write(getCompany);
+
+
 
     </script>
 </body>
