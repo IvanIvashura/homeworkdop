@@ -44,15 +44,7 @@
         }
         findRequiredCourse() {
             let sumInUah = this.dollorsSum * this.courseOfDollar;
-            let targetSumInUAH = sumInUah + 100;
-            let newCourse = this.courseOfDollar;
-            let newSumInUAH = sumInUah
-
-            while (newSumInUAH < targetSumInUAH) {
-                newCourse += 0.01;
-                newSumInUAH = this.dollorsSum * newCourse;
-            }
-            return newCourse
+            return (sumInUah + 100) / this.dollorsSum
         }
     }
 

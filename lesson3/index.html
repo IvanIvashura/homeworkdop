@@ -23,57 +23,18 @@
 
 
         class Company {
-            constructor() {
-                this.name = 'Корсент'
-                this.established = {
-                    year: 2021,
-                    month: 11
-                }
-                this.services = [
-                    {
-                        name: 'cleaningHouse',
-                        price: 1000,
-                        time: 30
-                    },
-                    {
-                        name: 'cleaningCar',
-                        price: 3500,
-                        time: 45
-                    },
-                    {
-                        name: 'cleaningRoom',
-                        price: 400,
-                        time: 15
-                    }
-                ];
-                this.adressFilials = [
-                    {
-                        country: 'Ukraine',
-                        city: 'Київ',
-                        street: 'Богдана Кошевика',
-                        build: 12,
-                    },
-                    {
-                        country: 'USA',
-                        city: 'Маямі',
-                        street: 'Бідона',
-                        build: 15
-                    },
-                    {
-                        country: 'Germany',
-                        city: 'Берлін',
-                        street: 'Адольфа проспект',
-                        build: 17
-                    }
-                ];
+            constructor(nameOfCompany, established, services, adressFilials,) {
+                this.name = nameOfCompany
+                this.established = established
+                this.services = services
+                this.adressFilials = adressFilials
             }
 
             //  methods 
 
             getCurrentYear() {
-                let establishedYear = this.established.year
                 let currentYear = 2023
-                return currentYear - establishedYear
+                return currentYear - this.established.year
             }
 
             getFilials(userCountry) {
@@ -109,8 +70,54 @@
             }
         }
 
-        let getCompany = new Company()
+        let getCompany = new Company('Kornet',
+            {
+                year: 2021,
+                month: 11
+            },
+            [
+                {
+                    name: 'cleaningCar',
+                    price: 3500,
+                    time: 45
+                },
+                {
+                    name: 'cleaningRoom',
+                    price: 400,
+                    time: 15
+                }
+            ],
+            [
+                {
+                    country: 'Ukraine',
+                    city: 'Київ',
+                    street: 'Богдана Кошевика',
+                    build: 12,
+                },
+                {
+                    country: 'USA',
+                    city: 'Маямі',
+                    street: 'Бідона',
+                    build: 15
+                },
+                {
+                    country: 'Germany',
+                    city: 'Берлін',
+                    street: 'Адольфа проспект',
+                    build: 17
+                }
+            ]
+
+        )
         document.write(getCompany);
+
+
+
+
+
+
+
+
 
 
 
