@@ -10,84 +10,105 @@
 
 <body>
     <script>
-        // Задача.Створити клас TBankomat,
-        // який моделює роботу банкомата.
-        // Клас повинен містити поля для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень.
-        // Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат,
-        // та метод зняття деякої суми.
+        // Особиста бібліотека.
 
-        class TBankomat {
-            constructor(initNums) {
-                this.banknota = initNums
+        // Картотека домашньої бібліотеки:
+        // дані книги
+        // (автори(піб, рік народження, короткий опис),
+        // назва книги, жанр, видавництво(назва, реєстраційний номер, рік засування)).
+        // Реалізувати розділи бібліотеки організувати додавання /
+        // вилучення книг та  вибір книг за назвою, за ПІБ автора, за видавництвом.
+
+        class Library {
+            constructor(title, newBook) {
+                this.title = title;
+                this.newBook = newBook
             }
-
-            getMinNum() {
-                let minBanknote = this.banknota.reduce((minBanknote, banknote) => {
-                    return banknote.namePrice < minBanknote.namePrice && banknote.value > 0 ? banknote : minBanknote;
-                }, this.banknota[0]);
-
-                return minBanknote.namePrice;
+            addBook(userBook) {
+                this.newBook = this.newBook.push(userBook)
             }
-
-            getMaxNum() {
-                return this.banknota.reduce((prevSum, el) => prevSum += (el.namePrice * el.value), 0)
+            removeBookByTitle(userTitle) {
+                this.newBook = this.newBook.filter(el => el.title == userTitle)
             }
-
-            getMoneyForGiving(userSum) {
-                let totalSum = this.getMaxNum()
-                let minNum = this.getMinNum()
-                if (userSum >= minNum && userSum <= totalSum) {
-                    totalSum -= userSum
-                    alert('Operatio uccessful')
-                    alert(`Залишок ${totalSum}`)
-                } else {
-                    throw new Error
-                }
+            removeByName(userFirstname, userSurname) {
+                this.newBook = this.newBook.filter(el => el.firstName == userFirstname && el.surName == userSurname)
             }
-
-            toString() {
-                return `Мінімальна сума для видачі ${this.getMinNum()}, максимальна сума для видачі ${this.getMaxNum()}  `
+            removeByEstablished(userEstablishedTitle) {
+                this.newBook = this.newBookp.filter(el => el.titleOfEstablished == userEstablishedTitle)
             }
         }
 
-        let getResult = new TBankomat([
-            {
-                name: '5hriven',
-                namePrice: 5,
-                value: 5
-            },
-            {
-                name: '10hriven',
-                namePrice: 10,
-                value: 15
-            },
-            {
-                name: '20hriven',
-                namePrice: 20,
-                value: 7
-            },
-            {
-                name: '50hriven',
-                namePrice: 50,
-                value: 3
-            },
-            {
-                name: '100hriven',
-                namePrice: 100,
-                value: 8
-            },
-            {
-                name: '200hriven',
-                namePrice: 200,
-                value: 4
+
+
+
+        class Book {
+            constructor(initData) {
+                this.author = new Author(initData)
+                this.established = new Established(initData)
+                this.title = initData.title
+                this.janre = initData.janre
             }
-        ])
-        document.write(getResult.toString())
-        let userSum = parseFloat(prompt('введіть суму для зняття'))
-        getResult.getMoneyForGiving(userSum)
+        }
 
+        class Author {
+            constructor(initData) {
+                this.firstName = initData.firstName
+                this.surName = initData.surName
+                this.birthday = initData.birthday
+                this.description = initData.description
+            }
+        }
 
+        class Established {
+            constructor(initData) {
+                this.titleOfEstablished = initData.titleOfEstablished
+                this.registrNum = initData.registrNum
+                this.publishYear = initData.publishYear
+            }
+        }
 
+        let newBook = [
+            new Book({
+                firstName: 'Jhon',
+                surName: 'Gasling',
+                birthday: 1985,
+                description: 'scienist books',
+                titleOfEstablished: 'Morning Zorya',
+                registrNum: 20223785,
+                publishYear: 2001,
+                title: 'What is a world',
+                janre: 'science'
+            }),
+            new Book({
+                firstName: 'Rayan',
+                surName: 'Koverg',
+                birthday: 1995,
+                description: 'comedia books',
+                titleOfEstablished: 'Kyiv Rankoviy',
+                registrNum: 20275435,
+                publishYear: 2007,
+                title: 'How we can joke',
+                janre: 'comedian'
+            }),
+            new Book({
+                firstName: 'Nikita',
+                surName: 'Nikolchenko',
+                birthday: 2001,
+                description: 'sirvival',
+                titleOfEstablished: 'Ukraine stars',
+                registrNum: 2022833715,
+                publishYear: 2017,
+                title: 'Survive in forest',
+                janre: 'survive'
+            })
+        ]
+
+        // console.log(newBook)
+
+        let myLibrary = new Library('my library', newBook)
+        console.log(myLibrary)
+        myLibrary.removeBookByTitle('Survive in forest')
+        console.log(myLibrary)
     </script>
 </body>
 

@@ -8,66 +8,34 @@
     <title>Задача 2</title>
 </head>
 <script>
-    // Задача 2. Створити клас TMoney для роботи з грошовими сумами.
-    // Сума повинна зберігатися у вигляді доларового еквіваленту.
-    // Реалізувати методи додавання / вилучення грошової маси,
-    // вказуючи необхідну суму у гривнях, та визначення курсу долара,
-    // при якому сума у гривнях збільшиться на 100.
-    // Курс долара зберігати в окремому полі.
+    // Створити службове авто(водій, марка, номер).
+    // Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
 
+    class companyCar {
+        static car
+        constructor(dirver, brand, number) {
+            if (companyCar.car) return companyCar.car
 
-    class TMoney {
-        #courseOfDollar
-        constructor(initDollorsSum, initCourseOfDollar) {
-            this.dollorsSum = initDollorsSum
-            this.courseOfDollar = initCourseOfDollar
-        }
-        get courseOfDollar() {
-            return this.#courseOfDollar
-        }
-        set courseOfDollar(course) {
-            if (course < 36 || course > 42) {
-                throw new Error('')
-            }
-            this.#courseOfDollar = course
+            this.dirver = dirver
+            this.brand = brand
+            this.number = number
+
+            companyCar.car = this
         }
         toString() {
-            return `Сума у $ ${this.dollorsSum.toFixed(2)}  Сума у гривнях ${(this.dollorsSum * this.courseOfDollar).toFixed(2)} необхідно збільшити курс до ${this.findRequiredCourse()}`
-        }
-        // методи
-
-        getAdd(userAddUah) {
-            this.dollorsSum += userAddUah / this.courseOfDollar
-        }
-        getSub(userSubUah) {
-            this.dollorsSum -= userSubUah / this.courseOfDollar
-        }
-        findRequiredCourse() {
-            let sumInUah = this.dollorsSum * this.courseOfDollar;
-            return (sumInUah + 100) / this.dollorsSum
+            return `driver: ${this.dirver}, brand: ${this.brand}, number ${this.number}`
         }
     }
 
-    let getSum = new TMoney(3500, 38)
-    document.write(getSum)
-
-    let userAddUah = parseInt(prompt('Введіть кількість гривень для додавання'))
-    getSum.getAdd(userAddUah)
-    document.write(`<br>${getSum}`)
-
-    let userSubUah = parseInt(prompt('Введіть кількість гривень для віднімання'))
-    getSum.getSub(userSubUah)
-    document.write(`<br>${getSum}`)
-
-
-    let requiredCourse = getSum.findRequiredCourse();
-
-    console.log(requiredCourse)
+    let getCar = new companyCar('Mikola', 'bmw', 'AA7373CC')
+    document.write(getCar)
+    document.write(`<br>`)
+    let getCar2 = new companyCar('Nikita', 'audi', 'AT76633CC')
+    document.write(getCar2)
 
 </script>
 
 <body>
-
 </body>
 
 </html>

@@ -10,112 +10,47 @@
 
 <body>
     <script>
-        // Задача 3. Об’єкт “Фірма” (використати члени-класи)
-
-        // назва фірми;
-        // дата заснування (рік, місяць);
-        // послуги (назва послуги, вартість, термін виконання);
-        // адреси філіалів (країна, місто, вулиця, номер будинку);
-
-        // визначення кількості років існування фірми;
-        // виведення всіх філіалів фірми у вказаному місті;
-        // виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+        // Створити клас Нагадувач.
+        // Кожні вказані кількості секунд(використати setInterval) програма нагадує про якусь подію
+        // (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було.
+        // Зробити так, щоб неможна було зробити одночасно декілька об’єктів - нагадувачів.
+        // Методи зупинки таймера, метод зміни повідомлення без зупинки таймера.
 
 
-        class Company {
-            constructor(nameOfCompany, established, services, adressFilials,) {
-                this.name = nameOfCompany
-                this.established = established
-                this.services = services
-                this.adressFilials = adressFilials
+        class Reminder {
+            static specimen
+            static interval = 500
+            static num = 0
+            static message = 'good morning!'
+
+            constructor() {
+                if (Reminder.specimen) return Reminder.specimen
+                Reminder.specimen = this
             }
 
-            //  methods 
-
-            getCurrentYear() {
-                let currentYear = 2023
-                return currentYear - this.established.year
+            static startInterval() {
+                Reminder.intervalSet = setInterval(() => {
+                    document.write(`${Reminder.message}, ${Reminder.num += 1}`)
+                }, Reminder.interval);
+            }
+            static stopInterval() {
+                clearInterval(Reminder.intervalSet)
             }
 
-            getFilials(userCountry) {
-                return this.adressFilials.reduce((prevArr, el) => {
-                    if (el.country == userCountry) {
-                        prevArr.push(el)
-                    }
-                    return prevArr
-                }, [])
+            static changeMessage(newMessage) {
+                Reminder.message = newMessage
             }
 
-            getServicesAndPrices(userMoney, userTime) {
-                return this.services.reduce((prevArr, el) => {
-                    if (el.price <= userMoney && el.time <= userTime) {
-                        prevArr.push(el.name)
-                    }
-                    return prevArr
-                }, [])
-            }
-
-
-            toString() {
-                let userCountry = prompt('Введіть країну з списку: Ukraine, Germany, USA');
-                let userMoney = prompt('Введіть кількість грошей');
-                let userTime = prompt('Введіть час за який потрібно виконати');
-
-                let filials = this.getFilials(userCountry);
-                let availableService = this.getServicesAndPrices(userMoney, userTime)
-                console.log(filials)
-                console.log(availableService)
-
-                return `кількість років ${this.getCurrentYear()}`;
-            }
         }
 
-        let getCompany = new Company('Kornet',
-            {
-                year: 2021,
-                month: 11
-            },
-            [
-                {
-                    name: 'cleaningCar',
-                    price: 3500,
-                    time: 45
-                },
-                {
-                    name: 'cleaningRoom',
-                    price: 400,
-                    time: 15
-                }
-            ],
-            [
-                {
-                    country: 'Ukraine',
-                    city: 'Київ',
-                    street: 'Богдана Кошевика',
-                    build: 12,
-                },
-                {
-                    country: 'USA',
-                    city: 'Маямі',
-                    street: 'Бідона',
-                    build: 15
-                },
-                {
-                    country: 'Germany',
-                    city: 'Берлін',
-                    street: 'Адольфа проспект',
-                    build: 17
-                }
-            ]
-
-        )
-        document.write(getCompany);
-
-
-
-
-
-
+        let getInterval = new Reminder()
+        Reminder.startInterval()
+        setTimeout(() => {
+            Reminder.changeMessage('Good night!')
+        }, 1000);
+        setTimeout(() => {
+            Reminder.stopInterval()
+        }, 2000);
 
 
 
