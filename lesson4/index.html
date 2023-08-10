@@ -10,105 +10,23 @@
 
 <body>
     <script>
-        // Особиста бібліотека.
+        // Задача 4. Наперед задано у скрипті масив зі списком бажань.
+        // Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div
+        // (їх треба створити і додати на сторінку)
 
-        // Картотека домашньої бібліотеки:
-        // дані книги
-        // (автори(піб, рік народження, короткий опис),
-        // назва книги, жанр, видавництво(назва, реєстраційний номер, рік засування)).
-        // Реалізувати розділи бібліотеки організувати додавання /
-        // вилучення книг та  вибір книг за назвою, за ПІБ автора, за видавництвом.
+        function getWishes() {
+            let wishes = ['party', 'money', 'love', 'trips', 'weekend']
+            for (let i = 0; i < 3; i++) {
+                let getRandNum = Math.floor(Math.random() * wishes.length)
+                let div = document.createElement('div')
+                div.innerHTML = wishes[getRandNum]
+                document.body.append(div)
+            }
 
-        class Library {
-            constructor(title, newBook) {
-                this.title = title;
-                this.newBook = newBook
-            }
-            addBook(userBook) {
-                this.newBook = this.newBook.push(userBook)
-            }
-            removeBookByTitle(userTitle) {
-                this.newBook = this.newBook.filter(el => el.title == userTitle)
-            }
-            removeByName(userFirstname, userSurname) {
-                this.newBook = this.newBook.filter(el => el.firstName == userFirstname && el.surName == userSurname)
-            }
-            removeByEstablished(userEstablishedTitle) {
-                this.newBook = this.newBookp.filter(el => el.titleOfEstablished == userEstablishedTitle)
-            }
         }
-
-
-
-
-        class Book {
-            constructor(initData) {
-                this.author = new Author(initData)
-                this.established = new Established(initData)
-                this.title = initData.title
-                this.janre = initData.janre
-            }
+        window.onload = function () {
+            getWishes()
         }
-
-        class Author {
-            constructor(initData) {
-                this.firstName = initData.firstName
-                this.surName = initData.surName
-                this.birthday = initData.birthday
-                this.description = initData.description
-            }
-        }
-
-        class Established {
-            constructor(initData) {
-                this.titleOfEstablished = initData.titleOfEstablished
-                this.registrNum = initData.registrNum
-                this.publishYear = initData.publishYear
-            }
-        }
-
-        let newBook = [
-            new Book({
-                firstName: 'Jhon',
-                surName: 'Gasling',
-                birthday: 1985,
-                description: 'scienist books',
-                titleOfEstablished: 'Morning Zorya',
-                registrNum: 20223785,
-                publishYear: 2001,
-                title: 'What is a world',
-                janre: 'science'
-            }),
-            new Book({
-                firstName: 'Rayan',
-                surName: 'Koverg',
-                birthday: 1995,
-                description: 'comedia books',
-                titleOfEstablished: 'Kyiv Rankoviy',
-                registrNum: 20275435,
-                publishYear: 2007,
-                title: 'How we can joke',
-                janre: 'comedian'
-            }),
-            new Book({
-                firstName: 'Nikita',
-                surName: 'Nikolchenko',
-                birthday: 2001,
-                description: 'sirvival',
-                titleOfEstablished: 'Ukraine stars',
-                registrNum: 2022833715,
-                publishYear: 2017,
-                title: 'Survive in forest',
-                janre: 'survive'
-            })
-        ]
-
-        // console.log(newBook)
-
-        let myLibrary = new Library('my library', newBook)
-        console.log(myLibrary)
-        myLibrary.removeBookByTitle('Survive in forest')
-        console.log(myLibrary)
     </script>
 </body>
 

@@ -5,33 +5,92 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
   <title>Задача 1</title>
 </head>
+<div class="caltulator__container">
+  <div class="calculator__inputs">
+    <div class="first__input">
+      <label class="calculator__label">
+        first__num
+        <input type="number" class="first__num" placeholder="0">
+      </label>
+    </div>
+    <select name="select__operation">
+      <option class="add" value="+">+</option>
+      <option class="subs" value="-">-</option>
+      <option class="multiply" value="*">*</option>
+      <option class="devis" value="/">/</option>
+    </select>
+    <div class="second__input">
+      <label class="calculator__label">
+        second__num
+        <input type="number" class="second__num" placeholder="0">
+      </label>
+    </div>
+  </div>
+  <div class="calculator__result">
+    <label class="result__input">
+      result
+      <input type="number__result" class="result">
+    </label>
+  </div>
+</div>
 
 <body>
   <script>
-    // Створити клас, що дозволяє виконувати такі операції над масивами: 
-    // знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+    // Задача 1. Розробити калькулятор
 
-    class ArrChecker {
-      static addMethod(arr) {
-        return arr.reduce((prevSum, el) => el >= 0 ? prevSum + 1 : prevSum, 0)
+    function performCalculation() {
+      const firstNum = parseFloat(document.querySelector('.first__num').value);
+      const secondNum = parseFloat(document.querySelector('.second__num').value);
+      const operation = document.querySelector('select[name="select__operation"]').value;
+
+      let result = 0;
+
+      switch (operation) {
+        case '+':
+          result = add(firstNum, secondNum);
+          break;
+        case '-':
+          result = subs(firstNum, secondNum);
+          break;
+        case '*':
+          result = multiply(firstNum, secondNum);
+          break;
+        case '/':
+          result = devis(firstNum, secondNum);
+          break;
+        default:
+          console.log('Недійсна операція');
       }
-      static substMethod(arr) {
-        return arr.reduce((prevSum, el) => el < 0 ? prevSum + 1 : prevSum, 0)
-      }
-      static anyNumMethod(arr, userNum) {
-        return arr.reduce((prevSum, el) => el == userNum ? prevSum + 1 : prevSum, 0)
-      }
+
+      showResult(result);
     }
 
-    let arr = [50, 20, 20, 10, -10, 1, -1, 2, 3, 0, 0, 1, -5, 3, 4, 7, 8]
-    let userNum = parseInt(prompt('Введіть шукане число'))
-    console.log(ArrChecker.addMethod(arr))
-    console.log(ArrChecker.substMethod(arr))
-    console.log(ArrChecker.anyNumMethod(arr, userNum))
+    function showResult(result) {
+      document.querySelector('.result').value = result.toFixed(2);
+    }
 
+    function add(firstNum, secondNum) {
+      return firstNum + secondNum;
+    }
 
+    function subs(firstNum, secondNum) {
+      return firstNum - secondNum;
+    }
+
+    function multiply(firstNum, secondNum) {
+      return firstNum * secondNum;
+    }
+
+    function devis(firstNum, secondNum) {
+      return firstNum / secondNum;
+    }
+
+    document.querySelector('.first__num').addEventListener('input', performCalculation);
+    document.querySelector('.second__num').addEventListener('input', performCalculation);
+    document.querySelector('select[name="select__operation"]').addEventListener('change', performCalculation);
 
   </script>
 </body>

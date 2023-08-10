@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 2</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="input__table">
+      <label class="num__scores">Введіть кількість оцінок<input type="number" class="user__num"><button
+          class="get__table">Get
+          table</button></label>
+    </div>
+    <button class="get__average">get average</button>
+  </div>
+
+
+  <script>
+    // Задача 6. Користувач задає кількість оцінок і натискає на кнопку «get table». 
+    // В результаті формується таблиця з input, куди користувач вводить оцінки.
+    // Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+
+    function getTables() {
+      let userNum = parseInt(document.querySelector('.user__num').value);
+      let numAfter = document.querySelector('.input__table');
+
+      for (let i = 0; i < userNum; i++) {
+        let label = document.createElement('label');
+        let inp = document.createElement('input');
+        label.textContent = `Score ${i + 1}:`;
+        inp.type = 'number';
+        inp.className = 'score-input';
+        numAfter.appendChild(label);
+        numAfter.appendChild(inp);
+      }
+    }
+
+    function getAverage() {
+      let inputs = document.querySelectorAll('.score-input');
+      let sum = 0;
+
+      for (let i = 0; i < inputs.length; i++) {
+        sum += parseInt(inputs[i].value);
+      }
+
+      let average = sum / inputs.length;
+
+      let averageDisplay = document.createElement('p');
+      averageDisplay.innerText = `Average: ${average.toFixed(2)}`;
+      document.body.appendChild(averageDisplay);
+    }
+
+    window.onload = function () {
+      document.querySelector('.get__table').addEventListener('click', getTables);
+      document.querySelector('.get__average').addEventListener('click', getAverage);
+    };
+  </script>
+
+  </script>
+</body>
+
+</html>

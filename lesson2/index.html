@@ -6,32 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 2</title>
+    <link rel="stylesheet" href="../style.css">
+
 </head>
+<div class="caltulator__container">
+    <div class="first__input">
+        <label class="calculator__label">
+            sum in UAH
+            <input type="number" class="first__num" placeholder="0">
+        </label>
+    </div>
+    <div class="resluts__input">
+        <div class="second__input">
+            <label class="calculator__label">
+                result__usd
+                <input type="number" class="result__usd">
+            </label>
+
+        </div>
+        <div class="calculator__result">
+            <label class="result__input">
+                result__eu
+                <input type="number" class="result__eu">
+            </label>
+        </div>
+    </div>
+</div>
 <script>
-    // Створити службове авто(водій, марка, номер).
-    // Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
-
-    class companyCar {
-        static car
-        constructor(dirver, brand, number) {
-            if (companyCar.car) return companyCar.car
-
-            this.dirver = dirver
-            this.brand = brand
-            this.number = number
-
-            companyCar.car = this
-        }
-        toString() {
-            return `driver: ${this.dirver}, brand: ${this.brand}, number ${this.number}`
-        }
+    // Задача 2. Зробити конвертер валют (курси валют – константи у скрипті)
+    function converter() {
+        const usd = 37.5;
+        const euro = 40.3;
+        const uah = parseFloat(document.querySelector('.first__num').value);
+        let sumInUsd = uah / usd;
+        let sumInEu = uah / euro;
+        document.querySelector('.result__usd').value = sumInUsd.toFixed(2);
+        document.querySelector('.result__eu').value = sumInEu.toFixed(2);
     }
 
-    let getCar = new companyCar('Mikola', 'bmw', 'AA7373CC')
-    document.write(getCar)
-    document.write(`<br>`)
-    let getCar2 = new companyCar('Nikita', 'audi', 'AT76633CC')
-    document.write(getCar2)
+    document.querySelector('.first__num').addEventListener('input', converter);
+
+
+</script>
 
 </script>
 

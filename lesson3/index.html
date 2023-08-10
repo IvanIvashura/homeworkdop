@@ -9,51 +9,27 @@
 </head>
 
 <body>
+    <div class="container">
+        <label class="user__num">Введіть рік народження <input type="number" class="num__year"></label>
+        <label class="result__num">Вам років:</label>
+    </div>
+
     <script>
-        // Створити клас Нагадувач.
-        // Кожні вказані кількості секунд(використати setInterval) програма нагадує про якусь подію
-        // (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було.
-        // Зробити так, щоб неможна було зробити одночасно декілька об’єктів - нагадувачів.
-        // Методи зупинки таймера, метод зміни повідомлення без зупинки таймера.
+        // Задача 3. Користувач задає рік народження.Визначити кількість років користувача.
 
-
-        class Reminder {
-            static specimen
-            static interval = 500
-            static num = 0
-            static message = 'good morning!'
-
-            constructor() {
-                if (Reminder.specimen) return Reminder.specimen
-                Reminder.specimen = this
+        function getYo() {
+            let userYear = parseInt(document.querySelector('.num__year').value)
+            let currentYear = 2023
+            let yearsOld = currentYear - userYear
+            let userResult = document.querySelector('.result__num')
+            if (yearsOld < 0) {
+                userResult.innerHTML = 0;
+                throw new Error("Рік народження не може бути у майбутньому!");
+            } else {
+                userResult.innerHTML = yearsOld;
             }
-
-            static startInterval() {
-                Reminder.intervalSet = setInterval(() => {
-                    document.write(`${Reminder.message}, ${Reminder.num += 1}`)
-                }, Reminder.interval);
-            }
-            static stopInterval() {
-                clearInterval(Reminder.intervalSet)
-            }
-
-            static changeMessage(newMessage) {
-                Reminder.message = newMessage
-            }
-
         }
-
-        let getInterval = new Reminder()
-        Reminder.startInterval()
-        setTimeout(() => {
-            Reminder.changeMessage('Good night!')
-        }, 1000);
-        setTimeout(() => {
-            Reminder.stopInterval()
-        }, 2000);
-
-
-
+        document.querySelector('.num__year').addEventListener('input', getYo);
 
 
     </script>

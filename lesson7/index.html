@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 2</title>
+</head>
+
+<body>
+  <form class="first__route">
+    <label class="transport"> Транспорт </label>
+    <select class="select__transport">
+      <option value="200">car</option>
+      <option value="100">bus</option>
+      <option value="350">plane</option>
+    </select>
+
+    <label class="eating"> Їжа </label>
+    <input type="checkbox" class="checkbox" value="50">сніданок
+    <input type="checkbox" class="checkbox" value="250">обід
+    <input type="checkbox" class="checkbox" value="70">вечеря
+
+    <label class="guide"> Гіди </label>
+    <input type="radio" value="100" class="radio"> guide 1
+    <input type="radio" value="100" class="radio"> guide 2
+    <input type="radio" value="100" class="radio"> guide 3
+
+  </form>
+  <br>
+  <form class="second__route">
+    <label class="transport"> Транспорт</label>
+    <select class="select__transport">
+      <option value="200">car</option>
+      <option value="100">bus</option>
+      <option value="350">plane</option>
+    </select>
+
+    <label class="eating">Їжа</label>
+    <input type="checkbox" class="checkbox" value="50">сніданок
+    <input type="checkbox" class="checkbox" value="250">обід
+    <input type="checkbox" class="checkbox" value="70">вечеря
+
+    <label class="guide">Гіди</label>
+    <input type="radio" value="100" class="radio"> guide 1
+    <input type="radio" value="100" class="radio"> guide 2
+    <input type="radio" value="100" class="radio"> guide 3
+
+  </form>
+  <br>
+  <form class="third__route">
+    <label class="transport">Транспорт</label>
+    <select class="select__transport">
+      <option value="200">car</option>
+      <option value="100">bus</option>
+      <option value="350">plane</option>
+    </select>
+
+    <label class="eating"> Їжа</label>
+    <input type="checkbox" class="checkbox" value="50">сніданок
+    <input type="checkbox" class="checkbox" value="250">обід
+    <input type="checkbox" class="checkbox" value="70">вечеря
+    <label class="guide">Гіди</label>
+    <input type="radio" value="100" class="radio"> guide 1
+    <input type="radio" value="100" class="radio"> guide 2
+    <input type="radio" value="100" class="radio"> guide 3
+  </form>
+  <button class="total__price">Get price</button>
+  <p class="result"></p>
+
+  <script>
+    //  Задача 7. Подорож складається з 3 етапів.
+    // На кожному етапі користувач може вибрати один з видів транспорту
+    // (авто, автобус, літак - випадаючий список),
+    // харчування(сніданок, обід, вечеря – checkbоx)
+    // та одного з 3 - х гідів(використати - radio buttons).
+    // Ціни визначте самі.Підрахувати загальну вартість.
+    function calculate() {
+      let transportCosts = document.querySelectorAll('.select__transport');
+      let foodCosts = document.querySelectorAll('.checkbox:checked');
+      let guideCosts = document.querySelectorAll('.radio:checked');
+      let sum = 0;
+
+      transportCosts.forEach(transport => {
+        sum += parseInt(transport.value);
+      });
+
+      foodCosts.forEach(food => {
+        sum += parseInt(food.value);
+      });
+
+      guideCosts.forEach(guide => {
+        sum += parseInt(guide.value);
+      });
+
+      document.querySelector('.result').innerHTML = `Сума: ${sum}`;
+
+
+    }
+
+    window.onload = function () {
+      document.querySelector('.total__price').addEventListener('click', calculate)
+    }
+
+
+
+  </script>
+
+  </script>
+</body>
+
+</html>
