@@ -16,7 +16,7 @@
         <input type="number" class="first__num" placeholder="0">
       </label>
     </div>
-    <select name="select__operation">
+    <select name="select__operation" class="operation-select">
       <option class="add" value="+">+</option>
       <option class="subs" value="-">-</option>
       <option class="multiply" value="*">*</option>
@@ -41,56 +41,61 @@
   <script>
     // Задача 1. Розробити калькулятор
 
-    function performCalculation() {
-      const firstNum = parseFloat(document.querySelector('.first__num').value);
-      const secondNum = parseFloat(document.querySelector('.second__num').value);
-      const operation = document.querySelector('select[name="select__operation"]').value;
+    function getCalculator() {
+      let firstNum = parseFloat(document.querySelector('.first__num').value)
+      let secondNum = parseFloat(document.querySelector('.second__num').value)
+      let operations = document.querySelector('.operation-select').value
 
       let result = 0;
 
-      switch (operation) {
+      switch (operations) {
         case '+':
-          result = add(firstNum, secondNum);
+          result = add(firstNum, secondNum)
           break;
         case '-':
-          result = subs(firstNum, secondNum);
+          result = subs(firstNum, secondNum)
           break;
         case '*':
-          result = multiply(firstNum, secondNum);
+          result = multiply(firstNum, secondNum)
           break;
         case '/':
-          result = devis(firstNum, secondNum);
+          result = devis(firstNum, secondNum)
           break;
         default:
-          console.log('Недійсна операція');
+          break;
       }
-
-      showResult(result);
+      showResult(result)
     }
 
+
     function showResult(result) {
-      document.querySelector('.result').value = result.toFixed(2);
+      document.querySelector('.result').value = result.toFixed(2)
     }
 
     function add(firstNum, secondNum) {
-      return firstNum + secondNum;
+      return firstNum + secondNum
     }
 
     function subs(firstNum, secondNum) {
-      return firstNum - secondNum;
+      return firstNum - secondNum
     }
 
     function multiply(firstNum, secondNum) {
-      return firstNum * secondNum;
+      return firstNum * secondNum
     }
 
     function devis(firstNum, secondNum) {
-      return firstNum / secondNum;
+      return firstNum / secondNum
     }
 
-    document.querySelector('.first__num').addEventListener('input', performCalculation);
-    document.querySelector('.second__num').addEventListener('input', performCalculation);
-    document.querySelector('select[name="select__operation"]').addEventListener('change', performCalculation);
+
+
+    document.querySelector('.first__num').addEventListener('input', getCalculator)
+    document.querySelector('.second__num').addEventListener('input', getCalculator)
+    document.querySelector('.operation-select').addEventListener('change', getCalculator)
+
+
+
 
   </script>
 </body>
