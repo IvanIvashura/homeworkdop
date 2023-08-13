@@ -9,44 +9,44 @@
     <link rel="stylesheet" href="../style.css">
 
 </head>
-<div class="caltulator__container">
-    <div class="first__input">
-        <label class="calculator__label">
-            sum in UAH
-            <input type="number" class="first__num" placeholder="0">
-        </label>
-    </div>
-    <div class="resluts__input">
-        <div class="second__input">
-            <label class="calculator__label">
-                result__usd
-                <input type="number" class="result__usd">
-            </label>
-
-        </div>
-        <div class="calculator__result">
-            <label class="result__input">
-                result__eu
-                <input type="number" class="result__eu">
-            </label>
-        </div>
-    </div>
-</div>
+Value 1<input type="number" class="number">
+Value 2<input type="number" class="number">
+Value 3<input type="number" class="number">
+Value 4<input type="number" class="number">
+Value 5<input type="number" class="number">
 <script>
-    // Задача 2. Зробити конвертер валют (курси валют – константи у скрипті)
-    function converter() {
-        const usd = 37.5;
-        const euro = 40.3;
-        const uah = parseFloat(document.querySelector('.first__num').value);
-        let sumInUsd = uah / usd;
-        let sumInEu = uah / euro;
-        document.querySelector('.result__usd').value = sumInUsd.toFixed(2);
-        document.querySelector('.result__eu').value = sumInEu.toFixed(2);
+    // Задача 2. Дано 5 елементів input. 
+    // При введенні значення у якийсь із них необхідно автоматично заповнювати інші
+    // (усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний),
+    //  усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+
+
+    let num = document.querySelectorAll('.number')
+
+    for (let i = 0; i < num.length; i++) {
+        num[i].addEventListener('input', func)
     }
 
-    document.querySelector('.first__num').addEventListener('input', converter);
 
+    function func() {
+        let currentEl = this
+        let valeuCurrent = parseFloat(this.value)
 
+        if (isNaN(valeuCurrent)) {
+            return
+        }
+
+        while (currentEl.nextElementSibling !== null) {
+
+            currentEl.nextElementSibling.value = valeuCurrent += 1
+            currentEl = currentEl.nextElementSibling
+        }
+        while (currentEl.previousElementSibling !== null) {
+
+            currentEl.previousElementSibling.value = valeuCurrent -= 1
+            currentEl = currentEl.previousElementSibling
+        }
+    } 
 </script>
 
 </script>

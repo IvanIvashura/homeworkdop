@@ -6,30 +6,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Задача 2</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
+  <div class="container__nouts">
+    <div class="nout__items">
+      <h1 class="nout__title">Sale</h1>
+      <img src="../fiirstnout.webp" alt="" class="image__nout">
+      <h2 class="name__nout">Lenovo acer aspire</h2>
+      <p class="price__nout">780$</p>
+    </div>
+    <div class="nout__items">
+      <h1 class="nout__title">Action</h1>
+      <img src="../seccondnout.webp" alt="" class="image__nout">
+      <h2 class="name__nout">Lenovo acer aspire</h2>
+      <p class="price__nout">580$</p>
+    </div>
+    <div class="nout__items">
+      <h1 class="nout__title">Sale</h1>
+      <img src="../thirdnout.webp" alt="" class="image__nout">
+      <h2 class="name__nout">Lenovo acer aspire</h2>
+      <p class="price__nout">620$</p>
+    </div>
+  </div>
   <script>
-    // Задача 5. Користувач задає кількість рядків і стовпців.
-    // Відобразити таблицю, у клітинках якої знаходяться числа 1, 2, 3,
-    function createTable(rowNum, colNum) {
-      let num = 1
-      const table = document.createElement('table')
-      for (let i = 0; i < rowNum; i++) {
-        const tr = document.createElement('tr')
-        for (let j = 0; j < colNum; j++) {
-          const td = document.createElement('td')
-          td.innerText = num
-          tr.append(td)
-          num++
-        }
-        table.append(tr)
-      }
-      document.body.append(table)
+    //  Задача 5. Відображаємо картки товарів, які користувач може вибирати.
+    // Вибраний товар має зелену рамку(при кліку робити toogle з класом вибраного елемента)
+
+    function toggleBorder() {
+      this.classList.toggle('selected');
     }
-    window.onload = function () {
-      createTable(2, 3)
-    }
+
+    let items = document.querySelectorAll('.nout__items');
+
+    items.forEach(item => {
+      item.addEventListener('click', toggleBorder);
+    });
+
   </script>
 </body>
 

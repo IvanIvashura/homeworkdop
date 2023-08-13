@@ -8,91 +8,37 @@
   <link rel="stylesheet" href="../style.css">
   <title>Задача 1</title>
 </head>
-<div class="caltulator__container">
-  <div class="calculator__inputs">
-    <div class="first__input">
-      <label class="calculator__label">
-        first__num
-        <input type="number" class="first__num" placeholder="0">
-      </label>
-    </div>
-    <select name="select__operation" class="operation-select">
-      <option class="add" value="+">+</option>
-      <option class="subs" value="-">-</option>
-      <option class="multiply" value="*">*</option>
-      <option class="devis" value="/">/</option>
-    </select>
-    <div class="second__input">
-      <label class="calculator__label">
-        second__num
-        <input type="number" class="second__num" placeholder="0">
-      </label>
-    </div>
-  </div>
-  <div class="calculator__result">
-    <label class="result__input">
-      result
-      <input type="number__result" class="result">
-    </label>
-  </div>
-</div>
 
 <body>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
+  <div>Hello</div>
   <script>
-    // Задача 1. Розробити калькулятор
+    // Задача 1. Дано 10 рядків тексту «Hello!» у окремих div.
+    // При кліку на якийсь із них усі наступні повинні бути зафарбовані у червоний колір.
 
-    function getCalculator() {
-      let firstNum = parseFloat(document.querySelector('.first__num').value)
-      let secondNum = parseFloat(document.querySelector('.second__num').value)
-      let operations = document.querySelector('.operation-select').value
 
-      let result = 0;
+    let divs = document.querySelectorAll('div')
 
-      switch (operations) {
-        case '+':
-          result = add(firstNum, secondNum)
-          break;
-        case '-':
-          result = subs(firstNum, secondNum)
-          break;
-        case '*':
-          result = multiply(firstNum, secondNum)
-          break;
-        case '/':
-          result = devis(firstNum, secondNum)
-          break;
-        default:
-          break;
+    for (let i = 0; i < divs.length; i++) {
+      divs[i].addEventListener('click', clickOnDiv)
+    }
+
+    function clickOnDiv() {
+      let currentDiv = this
+      while (currentDiv.nextElementSibling !== null) {
+        currentDiv.nextElementSibling.style.backgroundColor = 'red';
+        currentDiv = currentDiv.nextElementSibling
+
       }
-      showResult(result)
     }
-
-
-    function showResult(result) {
-      document.querySelector('.result').value = result.toFixed(2)
-    }
-
-    function add(firstNum, secondNum) {
-      return firstNum + secondNum
-    }
-
-    function subs(firstNum, secondNum) {
-      return firstNum - secondNum
-    }
-
-    function multiply(firstNum, secondNum) {
-      return firstNum * secondNum
-    }
-
-    function devis(firstNum, secondNum) {
-      return firstNum / secondNum
-    }
-
-
-
-    document.querySelector('.first__num').addEventListener('input', getCalculator)
-    document.querySelector('.second__num').addEventListener('input', getCalculator)
-    document.querySelector('.operation-select').addEventListener('change', getCalculator)
 
 
 

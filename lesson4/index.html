@@ -6,27 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 2</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
-    <script>
-        // Задача 4. Наперед задано у скрипті масив зі списком бажань.
-        // Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div
-        // (їх треба створити і додати на сторінку)
+    <div class="container__table">
 
-        function getWishes() {
-            let wishes = ['party', 'money', 'love', 'trips', 'weekend']
-            for (let i = 0; i < 3; i++) {
-                let getRandNum = Math.floor(Math.random() * wishes.length)
-                let div = document.createElement('div')
-                div.innerHTML = wishes[getRandNum]
-                document.body.append(div)
+    </div>
+    <script>
+        // Задача 4. Дано 3 таблиці розмірності 3 * 3 з випадковими числами.
+        // Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка
+        // (спробуйте додати можливість відображення кількості кліків біля назви таблиці 
+        // з використанням відповідно доданого для цього атрибута).
+
+
+
+        function generateTable() {
+            let container = document.querySelector('.container__table')
+            for (let t = 0; t < 3; t++) {
+                let tbl = document.createElement('table')
+                tbl.classList.add('tabl');
+                for (let i = 0; i < 3; i++) {
+                    let tr = document.createElement('tr')
+                    for (let j = 0; j < 3; j++) {
+                        let randNum = 1 + Math.floor(Math.random() * (100 - 1 + 1))
+                        let td = document.createElement('td')
+                        td.innerText = randNum
+                        td.addEventListener('click', getColor)
+                        tr.append(td)
+                    }
+                    tbl.append(tr)
+                }
+                container.append(tbl)
             }
 
         }
-        window.onload = function () {
-            getWishes()
+        function getColor(event) {
+            let td = event.currentTarget;
+            let tbl = td.closest('.tabl');
+            tbl.style.backgroundColor = 'red';
         }
+
+
+        generateTable()
+
     </script>
 </body>
 

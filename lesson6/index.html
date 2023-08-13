@@ -6,58 +6,90 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Задача 2</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="input__table">
-      <label class="num__scores">Введіть кількість оцінок<input type="number" class="user__num"><button
-          class="get__table">Get
-          table</button></label>
-    </div>
-    <button class="get__average">get average</button>
-  </div>
-
 
   <script>
-    // Задача 6. Користувач задає кількість оцінок і натискає на кнопку «get table». 
-    // В результаті формується таблиця з input, куди користувач вводить оцінки.
-    // Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    // Задача 6. Дано список спортсменів.Потрібно сформувати список тих, які будуть брати участь у змаганні.
+    // При цьому є два стовпці.В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний.
+    // При натисканні на зелену стрілку спортсмен переміщається у список для змагань.
+    // При натисканні на червону стрілку спортсмен переміщається у загальний список.
 
-    function getTables() {
-      let userNum = parseInt(document.querySelector('.user__num').value);
-      let numAfter = document.querySelector('.input__table');
+    class GetSportsmans {
+      constructor(initData) {
+        this.arr = initData;
+        this.clearArr = [];
+      }
 
-      for (let i = 0; i < userNum; i++) {
-        let label = document.createElement('label');
-        let inp = document.createElement('input');
-        label.textContent = `Score ${i + 1}:`;
-        inp.type = 'number';
-        inp.className = 'score-input';
-        numAfter.appendChild(label);
-        numAfter.appendChild(inp);
+      getTable() {
+        let container = document.createElement('div');
+        container.className = 'container__sport';
+
+        let allMembers = document.createElement('div');
+        allMembers.className = 'left__column';
+        this.arr.forEach((element) => {
+          let memberElement = document.createElement('div');
+          memberElement.className = 'member__element';
+          memberElement.innerText = element;
+
+          let button = document.createElement('button');
+          button.className = 'member__add';
+          button.innerText = ' ==>';
+
+          button.addEventListener('click', this.getAdd.bind(this, element));
+
+          memberElement.appendChild(button);
+          allMembers.appendChild(memberElement);
+        });
+        container.appendChild(allMembers);
+
+        let choiceMembers = document.createElement('div');
+        choiceMembers.className = 'right__column';
+        this.clearArr.forEach((element) => {
+          let memberElement = document.createElement('div');
+          memberElement.className = 'member__element';
+          memberElement.innerText = element;
+
+          let button = document.createElement('button');
+          button.className = 'member__remove';
+          button.innerText = '<==';
+
+          button.addEventListener('click', this.getRemove.bind(this, element));
+
+          memberElement.appendChild(button);
+          choiceMembers.appendChild(memberElement);
+        });
+        container.appendChild(choiceMembers);
+
+        document.body.appendChild(container);
+      }
+
+      getAdd(element) {
+        this.arr = this.arr.filter((item) => item !== element);
+        this.clearArr.push(element);
+        this.refreshTable();
+      }
+
+      getRemove(element) {
+        this.clearArr = this.clearArr.filter((item) => item !== element);
+        this.arr.push(element);
+        this.refreshTable();
+      }
+
+      refreshTable() {
+        document.body.innerHTML = '';
+        this.getTable();
       }
     }
 
-    function getAverage() {
-      let inputs = document.querySelectorAll('.score-input');
-      let sum = 0;
+    let arrOfSportsman = ['Ivan Hal', 'Sara Dopp', 'Jhonny Depp', 'Sergey Novikov', 'Alex Marcinkevich'];
+    const sportsmanTable = new GetSportsmans(arrOfSportsman);
+    sportsmanTable.getTable();
 
-      for (let i = 0; i < inputs.length; i++) {
-        sum += parseInt(inputs[i].value);
-      }
 
-      let average = sum / inputs.length;
 
-      let averageDisplay = document.createElement('p');
-      averageDisplay.innerText = `Average: ${average.toFixed(2)}`;
-      document.body.appendChild(averageDisplay);
-    }
-
-    window.onload = function () {
-      document.querySelector('.get__table').addEventListener('click', getTables);
-      document.querySelector('.get__average').addEventListener('click', getAverage);
-    };
   </script>
 
   </script>

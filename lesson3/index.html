@@ -10,27 +10,60 @@
 
 <body>
     <div class="container">
-        <label class="user__num">Введіть рік народження <input type="number" class="num__year"></label>
-        <label class="result__num">Вам років:</label>
+
     </div>
 
     <script>
-        // Задача 3. Користувач задає рік народження.Визначити кількість років користувача.
+        // Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами
+        // (кількість елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100)
+        // При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати 
+        // у зелений колір, інші у червоний.
 
-        function getYo() {
-            let userYear = parseInt(document.querySelector('.num__year').value)
-            let currentYear = 2023
-            let yearsOld = currentYear - userYear
-            let userResult = document.querySelector('.result__num')
-            if (yearsOld < 0) {
-                userResult.innerHTML = 0;
-                throw new Error("Рік народження не може бути у майбутньому!");
-            } else {
-                userResult.innerHTML = yearsOld;
+        class Table {
+
+            getRandom(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1));
+            }
+
+            getList(minFirst, maxFirst, minSecond, maxSecond) {
+                let container = document.querySelector('.container')
+                for (let i = 0; i < 5; i++) {
+
+                    let list = document.createElement('ol')
+                    list.className = 'list'
+                    let listsCount = this.getRandom(minFirst, maxFirst)
+
+                    for (let index = 0; index < listsCount; index++) {
+                        let value = this.getRandom(minSecond, maxSecond)
+                        let listElement = document.createElement('li')
+                        listElement.className = 'list__el'
+                        listElement.innerText = value
+                        list.append(listElement)
+                    }
+                    container.append(list)
+                }
+                let btn = document.createElement('button')
+                btn.className = 'button'
+                btn.innerText = 'get odd/even'
+                btn.onclick = this.getNums.bind(this)
+                container.append(btn)
+            }
+            getNums() {
+                let lists = document.querySelectorAll('.list')
+
+                lists.forEach(list => {
+                    let listEls = list.querySelectorAll('.list__el');
+                    if (listEls.length % 2 == 0) {
+                        list.style.color = 'green'
+                    } else
+                        list.style.color = 'red'
+                });
+
             }
         }
-        document.querySelector('.num__year').addEventListener('input', getYo);
 
+        let getTable = new Table()
+        getTable.getList(1, 10, 1, 100)
 
     </script>
 </body>
