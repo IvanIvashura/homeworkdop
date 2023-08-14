@@ -12,8 +12,44 @@
 <body>
   <div class="container__snow"></div>
   <script>
-   // 7. Задача 1. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю рухається вниз (у setInterval викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+    // 7. Задача 1. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю рухається вниз (у setInterval викликати метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+    class Snow {
+      getRandom(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1))
+      }
 
+      getMove() {
+        let maxTop = document.documentElement.clientHeight;
+        let currentTop = 0
+        let rand = this.getRandom(50, 100)
+
+        setInterval(() => {
+          currentTop += 10
+          this.snowFlake.style.top = currentTop + 'px'
+          if (currentTop >= maxTop) currentTop = 0
+        }, rand)
+      }
+
+
+      render() {
+        this.snowFlake = document.createElement('div')
+        this.snowFlake.className = "snow__flake"
+
+        let snowFlakeImage = document.createElement('img')
+        snowFlakeImage.className = 'img__snow'
+        snowFlakeImage.setAttribute('src', `../snow.png`)
+        this.snowFlake.append(snowFlakeImage)
+
+        let container = document.querySelector('.container__snow')
+        container.append(this.snowFlake)
+      }
+    }
+
+    window.onload = function () {
+      let getSnow = new Snow()
+      getSnow.render()
+      getSnow.getMove()
+    }
   </script>
 
 </body>

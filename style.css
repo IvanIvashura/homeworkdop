@@ -340,10 +340,11 @@ border-radius: 10px;
 }
 
 
-.snowflake {
+.snow__flake {
   position: absolute;
   left: 50%;
   top: 0;
+
 }
 
 
