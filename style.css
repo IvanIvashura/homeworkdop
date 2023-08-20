@@ -353,3 +353,93 @@ border-radius: 10px;
   height: 100px;
   width: 100px;
 }
+
+
+.container__tarakan{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.tarakan__item{
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+
+.tarakan__image{
+  height: 100px;
+  width: 100px;
+}
+.kill{
+  transform: none !important;
+}
+
+.starElement{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+.container__starts{
+  overflow: hidden;
+  width: 100%;
+}
+
+.tank{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+
+.kill{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transform: none 
+}
+
+.container__form{
+  
+
+}
+.inputForm{
+  display: flex;
+  gap: 20px ;  
+}
+
+.container__all{
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container__select{
+  width: 400px;
+  height: 200px;
+  border: 2px solid blueviolet;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 36px;
+  border-radius: 5px;
+  padding: 15px;
+}
+.brand{
+  width: 100px;
+}
+.year{
+  width: 100px;
+}
+
+.container__result{
+  margin-top: 50px;
+  padding: 25px;  
+  border-radius: 5px;
+  border: 2px solid rgb(54, 14, 92);
+  width: 400px;
+  flex: 1 1 auto;
+}
+

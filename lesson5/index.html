@@ -10,40 +10,90 @@
 </head>
 
 <body>
-  <div class="container__nouts">
-    <div class="nout__items">
-      <h1 class="nout__title">Sale</h1>
-      <img src="../fiirstnout.webp" alt="" class="image__nout">
-      <h2 class="name__nout">Lenovo acer aspire</h2>
-      <p class="price__nout">780$</p>
+  <div class="container__all">
+    <div class="container__select">
+      brand<select class="brand" id="">
+        <option value="all">всі</option>
+      </select>
+      year<select class="year" id="">
+        <option value="all">всі</option>
+      </select>
     </div>
-    <div class="nout__items">
-      <h1 class="nout__title">Action</h1>
-      <img src="../seccondnout.webp" alt="" class="image__nout">
-      <h2 class="name__nout">Lenovo acer aspire</h2>
-      <p class="price__nout">580$</p>
-    </div>
-    <div class="nout__items">
-      <h1 class="nout__title">Sale</h1>
-      <img src="../thirdnout.webp" alt="" class="image__nout">
-      <h2 class="name__nout">Lenovo acer aspire</h2>
-      <p class="price__nout">620$</p>
+    <div class="container__result">
+      <ul class="getRes">
+      </ul>
     </div>
   </div>
-  <script>
-    //  Задача 5. Відображаємо картки товарів, які користувач може вибирати.
-    // Вибраний товар має зелену рамку(при кліку робити toogle з класом вибраного елемента)
 
-    function toggleBorder() {
-      this.classList.toggle('selected');
+  <script>
+    // Задача. Дано список автомобілів (марка, рік випуску, ціна). 
+    // Сформувати елементи для фільтрування з використанням випадаючого списку
+    // (контент цих випадаючих списків сформувати у залежності від переданого списку).
+
+
+
+    class Cars {
+      constructor(initData) {
+        this.cars = initData
+      }
+
+      render(selectFirst, selectSecond, result) {
+        this.selectFirst = selectFirst;
+        this.selectSecond = selectSecond;
+        this.cars.forEach(car => {
+          let option = document.createElement('option')
+          option.value = car.brand
+          option.innerText = car.brand
+          document.querySelector(selectFirst).append(option)
+        });
+        this.cars.forEach(year => {
+          let optionYear = document.createElement('option')
+          optionYear.value = year.year
+          optionYear.innerText = year.year
+          document.querySelector(selectSecond).append(optionYear)
+        });
+
+        this.cars.forEach(car => {
+          let li = document.createElement('li')
+          li.innerText = `Brand-${car.brand}    Year-${car.year}  Price-${car.price}`
+          document.querySelector(result).append(li)
+        });
+        document.querySelector('.container__select').addEventListener('change', this.getChange.bind(this))
+      }
+
+      getChange(event) {
+        if (event.target.tagName === 'SELECT') {
+          let currentYear = document.querySelector(this.selectSecond).value;
+          let currentBrand = document.querySelector(this.selectFirst).value;
+          let newArr = this.cars.filter(car =>
+            (currentBrand === 'all' || car.brand === currentBrand) &&
+            (currentYear === 'all' || car.year <= currentYear)
+          );
+
+          const resultContainer = document.querySelector('.getRes');
+          resultContainer.innerHTML = '';
+          newArr.forEach(car => {
+            let li = document.createElement('li');
+            li.innerText = `Brand-${car.brand}    Year-${car.year}  Price-${car.price}`;
+            resultContainer.append(li);
+          });
+        }
+      }
+
+
     }
 
-    let items = document.querySelectorAll('.nout__items');
 
-    items.forEach(item => {
-      item.addEventListener('click', toggleBorder);
-    });
+    const cars = [
+      { brand: 'Toyota', year: 2020, price: 35000 },
+      { brand: 'Honda', year: 2018, price: 23000 },
+      { brand: 'Ford', year: 2019, price: 24000 },
+      { brand: 'Lexus', year: 2009, price: 24000 },
+      { brand: 'BMW', year: 2019, price: 14000 },
+    ]
 
+    const carSelector = new Cars(cars);
+    carSelector.render('.brand', '.year', '.getRes');
   </script>
 </body>
 

@@ -9,49 +9,74 @@
     <link rel="stylesheet" href="../style.css">
 
 </head>
-Value 1<input type="number" class="number">
-Value 2<input type="number" class="number">
-Value 3<input type="number" class="number">
-Value 4<input type="number" class="number">
-Value 5<input type="number" class="number">
 <script>
-    // Задача 2. Дано 5 елементів input. 
-    // При введенні значення у якийсь із них необхідно автоматично заповнювати інші
-    // (усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний),
-    //  усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+    // Задача 2. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки,
+    // які їдуть вниз. При кліку на танк він вибухає і зникає з екрану. 
+
+    class War {
+        static maxX = window.innerWidth;
+        constructor(numOfTanks) {
+            this.num = numOfTanks
+        }
+        getRandom(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+
+        getPosition(starEl) {
+            starEl.style.top = 0;
+            starEl.style.left = this.getRandom(0, (War.maxX - 100)) + 'px';
+        }
+
+        getMove(tank) {
+            let maxTop = window.innerHeight
+            let currentTop = 0
+            let rand = this.getRandom(500, 1000)
+
+            setInterval(() => {
+                currentTop += 10
+                if (!tank.classList.contains('kill')) {
+                    tank.style.top = currentTop + 'px'
+                    if (currentTop >= maxTop) currentTop = 0
+                }
+            }, rand)
+        }
 
 
-    let num = document.querySelectorAll('.number')
+        render(container) {
+            for (let i = 0; i < this.num; i++) {
+                this.tank = document.createElement('img')
+                this.tank.className = 'tank'
+                this.tank.setAttribute('src', `../tank.png`)
+                this.getPosition(this.tank)
+                this.getMove(this.tank)
+                this.tank.addEventListener('click', this.getBoom.bind(this, this.tank))
+                if (container) {
+                    document.querySelector(container).append(this.tank)
 
-    for (let i = 0; i < num.length; i++) {
-        num[i].addEventListener('input', func)
+                }
+            }
+        }
+
+        getBoom(element) {
+            element.src = '../chmonya.webp';
+            element.style.transform = 'none';
+            element.classList.add('kill');
+        }
     }
 
-
-    function func() {
-        let currentEl = this
-        let valeuCurrent = parseFloat(this.value)
-
-        if (isNaN(valeuCurrent)) {
-            return
-        }
-
-        while (currentEl.nextElementSibling !== null) {
-
-            currentEl.nextElementSibling.value = valeuCurrent += 1
-            currentEl = currentEl.nextElementSibling
-        }
-        while (currentEl.previousElementSibling !== null) {
-
-            currentEl.previousElementSibling.value = valeuCurrent -= 1
-            currentEl = currentEl.previousElementSibling
-        }
-    } 
-</script>
+    window.onload = function () {
+        let getWar = new War(5)
+        getWar.render('.container__war')
+        // if (getWar.render.tank.classList('kill') == 5) {
+        //     alert('Ви перемогли')
+        // }  хз як)))
+    }
 
 </script>
+
 
 <body>
+    <div class="container__war"></div>
 </body>
 
 </html>

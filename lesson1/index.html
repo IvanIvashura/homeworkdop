@@ -10,38 +10,89 @@
 </head>
 
 <body>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
-  <div>Hello</div>
+  <div class="container__starts"></div>
   <script>
-    // Задача 1. Дано 10 рядків тексту «Hello!» у окремих div.
-    // При кліку на якийсь із них усі наступні повинні бути зафарбовані у червоний колір.
+    // Задача 1. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. 
+    // Кожна зірка (це екземпляр класу Star) з певним кроком і інтервалом збільшується від мінімального
+    // до максимального розміру. Як тільки досягнути максимального розміру зірочка повинна з’являтися
+    // у іншій випадковій позиції.
+
+    class Star {
+      static maxY = window.innerHeight
+      static maxX = window.innerWidth;
+      static maxSize = 2;
+
+      constructor(star, numOfStars, interval) {
+        this.star = star
+        this.numOfStars = numOfStars
+        this.interval = interval
+        this.arr = []
+      }
+      getRandom(min, max) {
+        return min + Math.floor(Math.random() * (max - min + 1))
+      }
+
+      getPosition(starEl) {
+        starEl.style.top = this.getRandom(0, (Star.maxY - 100)) + 'px';
+        starEl.style.left = this.getRandom(0, (Star.maxX - 100)) + 'px';
+      }
+
+      // animateStar() {
+      //   this.arr.forEach(star => {
+      //     let elementSize = 1
+      //     let getInterval = setInterval(() => {
+      //       if (elementSize < Star.maxSize) {
+      //         elementSize += 0.5
+      //         star.style.transform = `scale(${elementSize})`;
+      //       } else {
+      //         clearInterval(getInterval)
+      //         star.style.transform = `scale(${1})`;
+      //         this.getPosition()
+      //         this.animateStar()
+      //       }
+      //     }, this.interval);
+      //   });
+      // }
+
+      animateStar(starEl) {
+        let elementSize = 1;
+        let getInterval = setInterval(() => {
+          if (elementSize < Star.maxSize) {
+            elementSize += 0.5;
+            starEl.style.transform = `scale(${elementSize})`;
+          } else {
+            clearInterval(getInterval);
+            starEl.style.transform = `scale(${1})`;
+            this.getPosition(starEl);
+            this.animateStar(starEl);
+          }
+        }, this.interval);
+      }
 
 
-    let divs = document.querySelectorAll('div')
-
-    for (let i = 0; i < divs.length; i++) {
-      divs[i].addEventListener('click', clickOnDiv)
-    }
-
-    function clickOnDiv() {
-      let currentDiv = this
-      while (currentDiv.nextElementSibling !== null) {
-        currentDiv.nextElementSibling.style.backgroundColor = 'red';
-        currentDiv = currentDiv.nextElementSibling
-
+      render(container) {
+        for (let i = 0; i < this.numOfStars; i++) {
+          this.starEl = document.createElement('img')
+          this.starEl.setAttribute('src', this.star)
+          this.starEl.classList.add('starElement')
+          this.getPosition(this.starEl)
+          this.animateStar(this.starEl)
+          // this.arr.push(this.starEl)
+          // this.animateStar()
+          if (container) {
+            document.querySelector(container).append(this.starEl)
+          }
+        }
       }
     }
 
+    let img = '../star.svg'
 
+    window.onload = function () {
+      let getStars = new Star(img, 5, 1000)
+      getStars.render('.container__starts')
 
+    }
 
   </script>
 </body>

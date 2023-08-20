@@ -6,64 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 2</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container__form">
 
     </div>
 
     <script>
-        // Задача 3. Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами
-        // (кількість елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100)
-        // При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати 
-        // у зелений колір, інші у червоний.
+        //  Задача 3. На формі вводять 7 числових значень(вік, зріст, вага, заробітна плата, стаж,
+        //  номер відділу, порядковий номер).
+        //  Додати подію обробки події click на форму і якщо клік на внутрішньому input, 
+        //  то автоматично замінювати значення його на 0. Використати делегування
 
-        class Table {
-
-            getRandom(min, max) {
-                return min + Math.floor(Math.random() * (max - min + 1));
+        class InputForm {
+            constructor(inputNames) {
+                this.inputNames = inputNames
             }
 
-            getList(minFirst, maxFirst, minSecond, maxSecond) {
-                let container = document.querySelector('.container')
-                for (let i = 0; i < 5; i++) {
+            render(container) {
+                this.form = document.createElement('form');
+                this.form.classList.add('inputForm');
+                this.form.addEventListener('click', this.getNum.bind(this))
+                for (let i = 0; i < this.inputNames.length; i++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.placeholder = this.inputNames[i]
 
-                    let list = document.createElement('ol')
-                    list.className = 'list'
-                    let listsCount = this.getRandom(minFirst, maxFirst)
-
-                    for (let index = 0; index < listsCount; index++) {
-                        let value = this.getRandom(minSecond, maxSecond)
-                        let listElement = document.createElement('li')
-                        listElement.className = 'list__el'
-                        listElement.innerText = value
-                        list.append(listElement)
-                    }
-                    container.append(list)
+                    this.form.appendChild(input)
                 }
-                let btn = document.createElement('button')
-                btn.className = 'button'
-                btn.innerText = 'get odd/even'
-                btn.onclick = this.getNums.bind(this)
-                container.append(btn)
+                document.querySelector(container).append(this.form)
             }
-            getNums() {
-                let lists = document.querySelectorAll('.list')
-
-                lists.forEach(list => {
-                    let listEls = list.querySelectorAll('.list__el');
-                    if (listEls.length % 2 == 0) {
-                        list.style.color = 'green'
-                    } else
-                        list.style.color = 'red'
-                });
-
+            getNum(event) {
+                if (event.target.tagName == 'INPUT') {
+                    event.target.value = 0
+                }
             }
         }
 
-        let getTable = new Table()
-        getTable.getList(1, 10, 1, 100)
+
+
+        window.onload = function () {
+            let names = ['age', 'height', 'weight', 'money', 'exp', 'numberDepart', 'num'];
+            let ne = new InputForm(names)
+            ne.render('.container__form')
+        }
 
     </script>
 </body>

@@ -10,45 +10,70 @@
 </head>
 
 <body>
-    <div class="container__table">
+    <div class="container__form">
 
     </div>
     <script>
-        // Задача 4. Дано 3 таблиці розмірності 3 * 3 з випадковими числами.
-        // Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка
-        // (спробуйте додати можливість відображення кількості кліків біля назви таблиці 
-        // з використанням відповідно доданого для цього атрибута).
+        // Задача 4. На сторінці міститься певна кількість кнопок і інпутів.
+        // Підраховувати загальну кількість кліків окремо на кнопках і окремо на інпутах.
 
-
-
-        function generateTable() {
-            let container = document.querySelector('.container__table')
-            for (let t = 0; t < 3; t++) {
-                let tbl = document.createElement('table')
-                tbl.classList.add('tabl');
-                for (let i = 0; i < 3; i++) {
-                    let tr = document.createElement('tr')
-                    for (let j = 0; j < 3; j++) {
-                        let randNum = 1 + Math.floor(Math.random() * (100 - 1 + 1))
-                        let td = document.createElement('td')
-                        td.innerText = randNum
-                        td.addEventListener('click', getColor)
-                        tr.append(td)
-                    }
-                    tbl.append(tr)
-                }
-                container.append(tbl)
+        class Form {
+            constructor(numOfBtn, numOfInp) {
+                this.numBtn = numOfBtn
+                this.numInp = numOfInp
+                this.countOfBtn = 0;
+                this.countOfInp = 0;
             }
 
-        }
-        function getColor(event) {
-            let td = event.currentTarget;
-            let tbl = td.closest('.tabl');
-            tbl.style.backgroundColor = 'red';
+
+            render(container) {
+                let form = document.createElement('form');
+                let countForBtn = document.createElement('div');
+                countForBtn.classList.add('count__btn');
+                countForBtn.innerText = this.countOfBtn;
+                this.countForBtn = countForBtn
+                form.append(countForBtn);
+
+                for (let i = 0; i < this.numBtn; i++) {
+                    let btn = document.createElement('button');
+                    btn.type = 'button'
+                    btn.innerText = 'button';
+                    form.append(btn);
+                }
+
+                let countForInp = document.createElement('div');
+                countForInp.classList.add('count__inp');
+                countForInp.innerText = this.countOfInp;
+                this.countForInp = countForInp
+                form.append(countForInp);
+
+                for (let i = 0; i < this.numInp; i++) {
+                    let inp = document.createElement('input');
+                    inp.placeholder = 'input';
+                    form.append(inp);
+                }
+
+                form.addEventListener('click', this.getRes.bind(this));
+                document.querySelector(container).append(form);
+            }
+
+            getRes(event) {
+                if (event.target.tagName === 'INPUT') {
+                    this.countOfInp++;
+                    this.countForInp.innerText = this.countOfInp;
+                }
+                if (event.target.tagName === 'BUTTON') {
+                    this.countOfBtn++;
+                    this.countForBtn.innerText = this.countOfBtn;
+                }
+            }
         }
 
+        window.onload = function () {
+            let getForm = new Form(2, 3);
+            getForm.render('.container__form');
+        }
 
-        generateTable()
 
     </script>
 </body>
