@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задача 2</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<style>
+  .container__prods {
+    margin: 150px;
+    padding: 50px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(212, 25, 87);
+    border-radius: 5px;
+    background-color: rgba(30, 29, 29, 0.2);
+    box-shadow: 10px 5px 5px red;
+    font-size: 16px;
+  }
+
+  .container__el {
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    gap: 250px;
+    align-items: center;
+    margin-bottom: 50px;
+    border: 2px solid rgb(18, 17, 18);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .container__el:last-child {
+    margin-bottom: 0px;
+
+  }
+
+  img {
+    max-width: 100px;
+  }
+
+  .container__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+  }
+
+  .container__counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+  }
+
+  .container__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+
+  button {
+    padding: 5px;
+    border: 2px solid rgb(205, 28, 205);
+    border-radius: 5px 10px;
+    color: wheat;
+    font-size: 24px;
+    background-color: rgb(58, 9, 58);
+    ;
+  }
+</style>
+
+<body>
+  <div class="container__prods"></div>
+  <script>
+    // Дано перелік товарів у кошику. При зміні кількості одиниць товару збільшувати загальну 
+    // вартість. Створити клас Product, що призначений для маніпуляцій товаром та клас ProductManager
+    // що оперує з усіма товарами (через подію передвати ідентифікатор товару та операцію, що зроблена
+    class Product {
+      constructor({ id, quantity, title, price, image }) {
+        this.id = id
+        this.quantity = quantity
+        this.title = title
+        this.price = price
+        this.image = image
+      }
+
+      render(containerSelector) {
+        const containerSel = document.querySelector(containerSelector);
+        let containerEl = document.createElement('div')
+        containerEl.classList.add('container__el')
+        this.el = containerEl
+        ////////////////////////////////////////////////////////////
+        let containerForMain = document.createElement('div')
+        containerForMain.classList.add('container__info')
+
+        let image = document.createElement('img')
+        image.classList.add('pic')
+        image.src = this.image
+
+        let title = document.createElement('p')
+        title.classList.add('title')
+        title.innerText = this.title
+
+        containerForMain.append(image, title)
+        ////////////////////////////////////////////////////////////
+        let containerForCounter = document.createElement('div')
+        containerForCounter.classList.add('container__counter')
+
+        let sub = document.createElement('button')
+        sub.classList.add('sub__btn')
+        sub.innerText = '-'
+
+        let quantit = document.createElement('span')
+        quantit.classList.add('quantity')
+        quantit.innerText = this.quantity
+        this.quant = quantit
+
+        let add = document.createElement('button')
+        add.classList.add('add__btn')
+        add.innerText = '+'
+
+        containerForCounter.append(sub, quantit, add)
+        ////////////////////////////////////////////////////////////
+        let containerForPrice = document.createElement('div')
+        containerForPrice.classList.add('container__price')
+
+        let printText = document.createElement('p')
+        printText.innerText = 'До сплати:'
+
+        let price = document.createElement('p')
+        price.classList.add('price')
+        price.innerText = this.price * this.quantity
+        this.pricePrint = price
+
+        let deleteBtn = document.createElement('button')
+        deleteBtn.classList.add('delete__btn')
+        deleteBtn.innerText = 'X'
+
+        containerForPrice.append(printText, price, deleteBtn)
+        ////////////////////////////////////////////////////////////
+        containerEl.append(containerForMain, containerForCounter, containerForPrice)
+        containerEl.addEventListener('click', this.func.bind(this))
+
+        containerSel.append(containerEl)
+
+      }
+      updateCountAndPrice() {
+        this.quant.innerText = this.quantity
+        this.pricePrint.innerText = this.price * this.quantity
+      }
+      func(e) {
+        if (e.target.classList.contains('delete__btn')) {
+
+          let deletedEvent = new CustomEvent('deletedProd', {
+            detail: {
+              priceForDelete: this.price * this.quantity
+            }
+          })
+          this.el.dispatchEvent(deletedEvent)
+          this.el.remove()
+        }
+        if (e.target.classList.contains('add__btn')) {
+          this.quantity += 1
+          let addEvent = new CustomEvent('addProd', {
+            detail: {
+              priceForAdd: this.price
+            }
+          })
+          this.el.dispatchEvent(addEvent)
+          this.updateCountAndPrice()
+
+
+        }
+        if (e.target.classList.contains('sub__btn')) {
+          this.quantity -= 1
+          if (this.quantity <= 0) {
+            this.el.remove()
+          }
+          let subEvent = new CustomEvent('subProd', {
+            detail: {
+              priceForSub: this.price
+            }
+          })
+          this.el.dispatchEvent(subEvent)
+          this.updateCountAndPrice()
+
+
+        }
+      }
+    }
+
+    class ProductManager {
+      constructor(productList) {
+        this.productList = productList
+        this.totalPrice = this.calculateTotalPrice()
+      }
+
+      calculateTotalPrice() {
+        return this.productList.reduce(
+          (sum, product) => sum + product.price * product.quantity,
+          0
+        )
+      }
+
+      productDelete(e) {
+        let priceForDelet = e.detail.priceForDelete
+        this.totalPrice -= priceForDelet
+        this.totalPriceEl.innerText = this.totalPrice
+      }
+
+      addProd(e) {
+        let priceForAdd = e.detail.priceForAdd
+        this.totalPrice += priceForAdd
+        this.totalPriceEl.innerText = this.totalPrice
+      }
+
+      subProd(e) {
+        let priceForSub = e.detail.priceForSub
+        this.totalPrice -= priceForSub
+        this.totalPriceEl.innerText = this.totalPrice
+      }
+
+      render(containerSelector) {
+        const el = document.createElement('div')
+        for (const product of this.productList) {
+          const productObj = new Product(product)
+          el.append(productObj.render(containerSelector))
+
+          productObj.el.addEventListener(
+            'deletedProd',
+            this.productDelete.bind(this)
+          )
+          productObj.el.addEventListener(
+            'addProd',
+            this.addProd.bind(this)
+          )
+          productObj.el.addEventListener(
+            'subProd',
+            this.subProd.bind(this)
+          )
+        }
+        const totalPriceEl = document.createElement('p')
+        totalPriceEl.className = 'total__price'
+        totalPriceEl.innerText = this.totalPrice;
+        el.append(totalPriceEl)
+
+        this.totalPriceEl = totalPriceEl
+
+        document.querySelector(containerSelector).append(el)
+        // return el
+
+      }
+    }
+
+
+    const productList = [
+      {
+        id: 1,
+        quantity: 1,
+        title: "Mouse",
+        price: 700,
+        image:
+          "../chmonya.webp",
+      },
+      {
+        id: 2,
+        quantity: 1,
+        title: "Keyboard",
+        price: 4000,
+        image:
+          "../third.png",
+      },
+      {
+        id: 3,
+        quantity: 1,
+        title: "Laptop",
+        price: 40000,
+        image:
+          "../snow.png",
+      },
+      {
+        id: 4,
+        quantity: 1,
+        title: "Laptop",
+        price: 43000,
+        image:
+          "../snow.png",
+      },
+    ];
+    window.onload = function () {
+      const productManager = new ProductManager(productList)
+      productManager.render('.container__prods')
+    }
+
+  </script>
+</body>
+
+</html>
